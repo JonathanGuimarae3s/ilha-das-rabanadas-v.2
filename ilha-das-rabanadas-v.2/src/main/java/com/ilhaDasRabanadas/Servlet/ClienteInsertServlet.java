@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.ilhaDasRabanadas.bean.Cliente;
 import com.ilhaDasRabanadas.bean.Login;
@@ -44,6 +45,9 @@ public class ClienteInsertServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		HttpSession session = request.getSession();
+		session.removeAttribute("id");
+
 		// criando o login
 		LoginDao loginDao = new LoginDao();
 
@@ -70,9 +74,9 @@ public class ClienteInsertServlet extends HttpServlet {
 		String rua = request.getParameter("rua");
 		String numero = request.getParameter("numero");
 		String bairro = request.getParameter("bairro");
-		String cep  = request.getParameter("cep");
+		String cep = request.getParameter("cep");
 		String cidade = request.getParameter("cidade");
-		//==========================
+		// ==========================
 		Cliente cliente = new Cliente();
 		cliente.setIdLogin(loginDb.getIdLogin());
 		cliente.setNomeCliente(nome);
@@ -83,17 +87,17 @@ public class ClienteInsertServlet extends HttpServlet {
 		cliente.setCep(cep);
 		cliente.setNumero(numero);
 		cliente.setBairro(bairro);
-
+		session.setAttribute("boasVindas", "Bem-vindo(a) a Ilha");
 		try {
 			ClienteDao clienteDao = new ClienteDao();
 			ClienteDao.register(cliente);
-			
-			LoginDao.Authentication(email, password);
-			Login login1 = LoginDao.Authentication(email, password);
-		int id=login1.getIdLogin();
-		response.sendRedirect("./Cliente/Dashboard.jsp");
+			int id = loginDb.getIdLogin();
+			session.setAttribute("id", id);
+
+			response.sendRedirect("./Cliente/Dashboard.jsp");
+
 		} catch (Exception e) {
-		
+
 			System.out.println("errora");
 			System.out.println(e);
 		}

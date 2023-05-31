@@ -28,14 +28,49 @@
 </head>
 <body>
 <body>
+	<%
+	String atualizado = (String) session.getAttribute("atualizado");
 
+	// Remove o atributo da sessão
+	if (atualizado != null) {
+	%>
+	<div class="toast-container position-fixed top-0 end-0 p-3 " style="z-index:11;">
+		<div id='toast' class='toast ' role='alert' aria-live='assertive'
+			aria-atomic='true'>
+			<div class='toast-header d-flex justify-content-between'>
+				<i class='bi bi-info-circle'></i>
+
+
+				<button type='button' class='btn-close' data-bs-dismiss='toast'
+					aria-label='Close'></button>
+			</div>
+			<div class='toast-body '>${atualizado}</div>
+		</div>
+	</div>
+	<script>
+        onload = () => {
+            const toastEl = document.getElementById("toast");
+
+            const toast = new bootstrap.Toast(toastEl);
+
+            toast.show();
+        };
+    </script>
+	<%
+	session.removeAttribute("atualizado");
+	
+	}
+	%>
 
 	<jsp:include page="../Headers/header-dashboard-cliente.jsp"></jsp:include>
 	<%
-	
 	Integer id = (Integer) session.getAttribute("id");
-	Cliente cliente = ClienteDao.getElementByIdLogin(id);
-	request.setAttribute("cliente", cliente);
+	if (id == null) {
+		response.sendRedirect("../Login/login.jsp");
+	} else {
+		Cliente cliente = ClienteDao.getElementByIdLogin(id);
+		request.setAttribute("cliente", cliente);
+	}
 	%>
 	<div
 		class="container d-flex justify-content-center align-items-center my-5 flex-column gap-3">
@@ -46,7 +81,7 @@
 
 				<div class="col">
 					<h5>Nome</h5>
-					<p>${cliente.getNomeCliente()} </p> 
+					<p>${cliente.getNomeCliente()}</p>
 				</div>
 
 			</div>
@@ -94,7 +129,7 @@
 
 			<a href="../Cliente/AtualizarPerfil.jsp" id="button-submit"
 				class=" nav-link d-flex justify-content-center"><input
-				id="finalizar" class="btn" value="Editar"type="submit" ></a>
+				id="finalizar" class="btn" value="Editar" type="submit"></a>
 
 		</div>
 	</div>

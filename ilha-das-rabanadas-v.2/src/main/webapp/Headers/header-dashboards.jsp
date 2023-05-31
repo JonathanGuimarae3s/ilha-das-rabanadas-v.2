@@ -1,12 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Home</title>
-</head>
-<body>
 
 	<div class="container-fluid " id="header">
 		<header
@@ -14,10 +5,10 @@
 
 			<div>
 				<a href="../Home/home.jsp"
-					class="col-md-4 mb-2 justify-content-center mb-md-0" id="return">
+					class="col-md-4 mb-2 justify-content-center mb-md-0" >
 					<lord-icon src="https://cdn.lordicon.com/zmkotitn.json"
 						trigger="click" colors="primary:#121331" state="hover-2"
-						style="width:50px;height:50px"> </lord-icon>
+						style="width:50px;height:50px" id="return"> </lord-icon>
 				</a>
 			</div>
 			<div class="col-md-4 text-center m-auto">
@@ -32,6 +23,3 @@
 			</div>
 		</header>
 	</div>
-
-</body>
-</html>
