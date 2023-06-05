@@ -1,14 +1,17 @@
 
+
 <%@page import="org.apache.jasper.tagplugins.jstl.core.If"%>
 <%@page import="com.ilhaDasRabanadas.dao.*"%>
 <%@page import="com.ilhaDasRabanadas.bean.*"%>
 <%@ page import="java.util.*"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@page import="javax.xml.crypto.Data"%>
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 
 <%@ page import="java.util.Date,java.text.SimpleDateFormat"%>
+
 
 
 
@@ -30,8 +33,10 @@
 	integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
 	crossorigin="anonymous">
 
+
 <link rel="stylesheet" href="../public/css/style.css">
 <link rel="stylesheet" href="../public/css/carrinho/carrinho.css">
+
 <style>
 </style>
 </head>
@@ -39,6 +44,7 @@
 <body>
 
 	<%
+
 	Integer id = (Integer) session.getAttribute("id");
 	Cliente cliente = new Cliente();
 
@@ -53,7 +59,7 @@
 	String produtoId = request.getParameter("product");
 	Date dataAtual = new Date();
 	if (id == null) {
-		request.setAttribute("msg", "… necess·rio estar logado para efetuar a compra!");
+		request.setAttribute("msg", "√â necess√°rio estar logado para efetuar a compra!");
 		response.sendRedirect("../Login/login.jsp");
 
 	} else {
@@ -76,18 +82,18 @@
 		}
 
 	}
+
 	%>
+
 	<!-- Bootstrap JavaScript Libraries -->
 
-
-
-	<jsp:include page="../Headers/headerCliente.jsp"></jsp:include>
 
 
 	<main class="my-5">
 
 
 		<h1 class="text-center">Seu carrinho</h1>
+
 		<c:if test="${produto.getIdProduto()!= 0}">
 
 
@@ -119,17 +125,18 @@
 										<p>Total:</p>
 										<input type="text" value="R$5,00" id="valorPedido"
 											class="border-0" name="valorPedido" readonly>
-									</div>
+									</div
 								</div>
 							</div>
 						</div>
 					</div>
+
 					<div class="card   mb-3">
 						<div class="row g-0">
 							<div class="col">
 								<div class="card-body">
 									<div class="mb-3">
-										<label for="" class=" mb-2 form-label"> EndereÁo de
+										<label for="" class=" mb-2 form-label"> Endere√ßo de
 											entrega: </label> <input type="text" name="endereco"
 											value="${cliente.getEndereco()}" id="endereco"
 											class="form-control" placeholder="" aria-describedby="helpId"
@@ -151,7 +158,7 @@
 											<input class="form-check-input" type="radio" value="cartao"
 												name="flexRadioDefault" id="flexRadioDefault1"> <label
 												class="form-check-label" for="flexRadioDefault1">
-												Cart„o ou pix </label>
+												Cart√£o ou pix </label>
 										</div>
 										<div class="form-check">
 											<input class="form-check-input" type="radio" value="dinheiro"
@@ -161,10 +168,11 @@
 										</div>
 									</div>
 									<div>
-										<p>Precisar· de troco? Para quanto?</p>
+										<p>Precisar√° de troco? Para quanto?</p>
 										<input type="text" value="" name="troco" class="form-control">
 									</div>
 								</div>
+
 							</div>
 						</div>
 					</div>
@@ -181,7 +189,7 @@
 		<c:if test="${produto.getIdProduto()== 0}">
 			<div class="text-center">
 				<img src="../public/imgs/pedidos/naoHaPedidos.webp" alt=""></img>
-				<h4>Seu carrinho est· vazio!</h4>
+				<h4>Seu carrinho est√° vazio!</h4>
 			</div>
 		</c:if>
 

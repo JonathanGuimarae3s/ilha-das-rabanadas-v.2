@@ -44,11 +44,12 @@ public class ClienteInsertServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		HttpSession session = request.getSession();
+
 		HttpSession session = request.getSession();
 		session.removeAttribute("id");
 
-		// criando o login
+
 		LoginDao loginDao = new LoginDao();
 
 		String email = request.getParameter("email");
@@ -66,6 +67,8 @@ public class ClienteInsertServlet extends HttpServlet {
 			System.out.println(e.getMessage());
 
 		}
+		// criando o registro na tabela de cliente
+
 		Login loginDb = LoginDao.getLogin(email);
 
 		String nome = request.getParameter("nome");
@@ -89,8 +92,10 @@ public class ClienteInsertServlet extends HttpServlet {
 		cliente.setBairro(bairro);
 		session.setAttribute("boasVindas", "Bem-vindo(a) a Ilha");
 		try {
+			// registrando o cliente
 			ClienteDao clienteDao = new ClienteDao();
 			ClienteDao.register(cliente);
+
 			int id = loginDb.getIdLogin();
 			session.setAttribute("id", id);
 
@@ -100,6 +105,7 @@ public class ClienteInsertServlet extends HttpServlet {
 
 			System.out.println("errora");
 			System.out.println(e);
+
 		}
 
 	}
