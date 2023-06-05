@@ -48,7 +48,7 @@ if (!teste) {
 	<%
 	String pedidomsg = (String) session.getAttribute("pedidomsg");
 
-	// Remove o atributo da sessão
+	// Remove o atributo da sessï¿½o
 	if (pedidomsg != null) {
 	%>
 	<div class="toast-container position-fixed top-0 end-0 p-3 "
@@ -93,6 +93,7 @@ if (!teste) {
 	<c:if test="${pedido.getIdPedido()== 0}">
 		<div class="text-center">
 			<img src="../public/imgs/pedidos/naoHaPedidos.webp" alt=""></img>
+
 			<h4>Você ainda não fez um pedido!</h4>
 
 		</div>
@@ -104,16 +105,16 @@ if (!teste) {
 
 					<thead>
 						<tr>
-							<th scope="col">Código do Pedido</th>
+							<th scope="col">Cï¿½digo do Pedido</th>
 							<th scope="col">Produto encomendado</th>
 							<th scope="col">Data da entrega</th>
 							<th scope="col">Hora da entrega</th>
-							<th scope="col">Endereço</th>
+							<th scope="col">Endereï¿½o</th>
 							<th scope="col">Quantidade do Pedido</th>
 							<th scope="col">Valor</th>
 							<th scope="col">Forma de Pagamento</th>
 							<th scope="col">troco</th>
-							<th scope="col" colspan="2">Açoes</th>
+							<th scope="col" colspan="2">Aï¿½oes</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -180,7 +181,7 @@ if (!teste) {
 								<div class='modal-content'>
 									<div class='modal-header'>
 										<h5 class='modal-title' id='modalTitleId'>Indique o dado
-											que você quer mudar!</h5>
+											que vocï¿½ quer mudar!</h5>
 										<button type='button' class='btn-close'
 											data-bs-dismiss='modal' aria-label='Close'></button>
 									</div>
@@ -197,6 +198,7 @@ if (!teste) {
 											data-bs-dismiss='modal'>cancelar</button>
 										<button id='edit' type='button' class='btn btn-primary'>Enviar</button>
 									</div>
+
 								</div>
 							</div>
 						</div>

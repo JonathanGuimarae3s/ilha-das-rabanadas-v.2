@@ -1,13 +1,19 @@
 
+<%@page import="org.apache.jasper.tagplugins.jstl.core.If"%>
+<%@page import="com.ilhaDasRabanadas.dao.*"%>
+<%@page import="com.ilhaDasRabanadas.bean.*"%>
+<%@ page import="java.util.*"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@page import="javax.xml.crypto.Data"%>
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ page import="com.ilhaDasRabanadas.bean.Cliente"%>
 
-<%@ page import="com.ilhaDasRabanadas.dao.ClienteDao"%>
-<%@ page import="com.ilhaDasRabanadas.bean.Produto"%>
 
-<%@ page import="com.ilhaDasRabanadas.dao.ProdutoDao"%>
+<%@ page import="java.util.Date,java.text.SimpleDateFormat"%>
+
+
 
 
 
@@ -28,6 +34,12 @@
 	rel="stylesheet"
 	integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
 	crossorigin="anonymous">
+
+
+
+<link rel="stylesheet" href="../public/css/style.css">
+<link rel="stylesheet" href="../public/css/carrinho/carrinho.css">
+
 
 <style>
 section {
@@ -88,13 +100,46 @@ input[type=number] {
 
 
 	<%
-	
-	Produto produto = ProdutoDao.getElementById(request.getParameter("id"));
-	request.setAttribute("produto", produto);
-	
+
 	Integer id = (Integer) session.getAttribute("id");
-	Cliente cliente = ClienteDao.getElementByIdLogin(id);
-	request.setAttribute("cliente", cliente);
+	Cliente cliente = new Cliente();
+
+	boolean teste = cliente.validarCliente(id);
+	if (!teste) {
+
+		response.sendRedirect("../Home/home.jsp");
+
+	}
+
+	SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yyyy");
+	String produtoId = request.getParameter("product");
+	Date dataAtual = new Date();
+	if (id == null) {
+		request.setAttribute("msg", "É necessário estar logado para efetuar a compra!");
+		response.sendRedirect("../Login/login.jsp");
+
+	} else {
+		if (produtoId == null && id != null) {
+
+			cliente = ClienteDao.getElementByIdLogin(id);
+			Carrinho carrinho = CarrinhoDao.getMyProducts(cliente.getIdCliente());
+			request.setAttribute("cliente", cliente);
+
+			Produto produto = ProdutoDao.getElementById(Integer.toString(carrinho.getIdProduto()));
+			request.setAttribute("produto", produto);
+
+		} else {
+			cliente = ClienteDao.getElementByIdLogin(id);
+			request.setAttribute("cliente", cliente);
+
+			Produto produto = ProdutoDao.getElementById(produtoId);
+			request.setAttribute("produto", produto);
+			CarrinhoDao.insert(produto.getIdProduto(), cliente.getIdCliente());
+		}
+
+	}
+
+
 	%>
 
 	<!-- Bootstrap JavaScript Libraries -->
@@ -107,6 +152,7 @@ input[type=number] {
 		<h1 class="text-center">Seu carrinho</h1>
 
 
+		<c:if test="${produto.getIdProduto()!= 0}">
 
 		<div class="text-center">
 			<img src="../public/imgs/pedidos/naoHaPedidos.webp" alt=""></img>
@@ -143,42 +189,81 @@ input[type=number] {
 									<p>Total:</p>
 									<input type="text" value="" id="valorPedido" class="border-0"
 										name="valorPedido" readonly>
+
+										<p>Total:</p>
+										<input type="text" value="R$5,00" id="valorPedido"
+											class="border-0" name="valorPedido" readonly>
+									</div>
+
 								</div>
 							</div>
 						</div>
 					</div>
-				</div>
-				<div class="card   mb-3">
-					<div class="row g-0">
-						<div class="col">
-							<div class="card-body">
-								<div class="mb-3">
-									<label for="" class=" mb-2 form-label"> Endere�o de
-										entrega: </label> <input type="text" name="endereco" id="endereco"
-										class="form-control" placeholder="" aria-describedby="helpId"
-										required>
-								</div>
-								<div class="mb-3">
-									<label class=" mb-2 form-label" for="">Data de entrega</label>
-									<input type="date" name="dataEntrega" id="dataEntrega"
-										class="form-control" required>
-								</div>
-								<div class="mb-3">
-									<label class=" mb-2 form-label" for="hora da entrega">Hora
-										da entrega</label> <input type="time" id="" min="08:00" max="20:00"
-										name="hora" class="form-control" required>
+
+
+					<div class="card   mb-3">
+						<div class="row g-0">
+							<div class="col">
+								<div class="card-body">
+									<div class="mb-3">
+										<label for="" class=" mb-2 form-label"> Endereço de
+											entrega: </label> <input type="text" name="endereco"
+											value="${cliente.getEndereco()}" id="endereco"
+											class="form-control" placeholder="" aria-describedby="helpId"
+											required>
+									</div>
+									<div class="mb-3">
+										<label class=" mb-2 form-label" for="">Data de entrega</label>
+										<input type="date" min="${data}" name="dataEntrega"
+											id="dataEntrega" class="form-control" required>
+									</div>
+									<div class="mb-3">
+										<label class=" mb-2 form-label" for="hora da entrega">Hora
+											da entrega</label> <input type="time" id="" min="08:00" max="20:00"
+											name="hora" class="form-control" required>
+									</div>
+									<div>
+										<p>Forma de Pagamento</p>
+										<div class="form-check">
+											<input class="form-check-input" type="radio" value="cartao"
+												name="flexRadioDefault" id="flexRadioDefault1"> <label
+												class="form-check-label" for="flexRadioDefault1">
+												Cartão ou pix </label>
+										</div>
+										<div class="form-check">
+											<input class="form-check-input" type="radio" value="dinheiro"
+												name="flexRadioDefault" id="flexRadioDefault2" checked>
+											<label class="form-check-label" for="flexRadioDefault2">
+												Dinheiro </label>
+										</div>
+									</div>
+									<div>
+										<p>Precisará de troco? Para quanto?</p>
+										<input type="text" value="" name="troco" class="form-control">
+									</div>
 								</div>
 
 							</div>
 						</div>
 					</div>
-				</div>
-				<div class="d-flex " id="buttons">
-					<a href="../0"><button type="button" class="btn btn-secondary">Cancelar
-							encomenda</button></a> <input type="submit" class=" btn btn-success"
-						value="Fechar encomenda">
-				</div>
-			</form>
+					<div class="d-flex " id="buttons">
+						<a href="../0"><button type="button" class="btn btn-secondary">Cancelar
+								encomenda</button></a> <input type="submit" class=" btn btn-success"
+							value="Fechar encomenda">
+					</div>
+				</form>
+
+			</section>
+		</c:if>
+
+		<c:if test="${produto.getIdProduto()== 0}">
+			<div class="text-center">
+				<img src="../public/imgs/pedidos/naoHaPedidos.webp" alt=""></img>
+				<h4>Seu carrinho está vazio!</h4>
+			</div>
+		</c:if>
+
+
 
 		</section>
 

@@ -45,12 +45,13 @@ public class ClienteInsertServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
+
 		// TODO Auto-generated method stub
 
 		
 		session.removeAttribute("id");
 
-		// criando o login
+
 
 		LoginDao loginDao = new LoginDao();
 
