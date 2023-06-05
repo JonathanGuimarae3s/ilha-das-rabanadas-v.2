@@ -1,3 +1,4 @@
+<%@page import="com.ilhaDasRabanadas.bean.Cliente"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -78,8 +79,18 @@
     </style>
 </head>
 <body>
+<%
+	Integer id = (Integer) session.getAttribute("id");
 
-<body>
+	Cliente cliente = new Cliente();
+	boolean teste = cliente.validarCliente(id);
+	if (teste) {
+
+		response.sendRedirect("../Home/home.jsp");
+
+	}
+	%>
+
 
 
 <div class="container-fluid " id="header">

@@ -1,11 +1,15 @@
 package com.ilhaDasRabanadas.Servlet;
 
+import java.util.Date;
+import java.text.SimpleDateFormat;
+
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.ilhaDasRabanadas.bean.Pedido;
 import com.ilhaDasRabanadas.dao.PedidoDao;
@@ -43,7 +47,11 @@ public class PedidoInsertServlet extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
-
+		//msg
+		HttpSession session = request.getSession();
+		session.setAttribute("pedidomsg", "Pedido feito com sucesso!");
+		
+		// pegando os parametros
 		String nomeProduto = request.getParameter("nomeProduto");
 		int idCliente = Integer.parseInt(request.getParameter("idCliente"));
 		String quantidade = request.getParameter("quantidadePedido");
@@ -53,6 +61,9 @@ public class PedidoInsertServlet extends HttpServlet {
 		String hora = request.getParameter("hora");
 		String troco = request.getParameter("troco");
 		String formaPagamento = request.getParameter("flexRadioDefault");
+		// Formata a data que vem do form
+		
+		// inserção
 		try {
 			Pedido pedido = new Pedido();
 			pedido.setIdCliente(idCliente);

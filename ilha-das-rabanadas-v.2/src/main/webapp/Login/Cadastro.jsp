@@ -56,8 +56,7 @@
 		class="container d-flex justify-content-center align-items-center my-5 flex-column gap-3">
 		<h1 class="text-center">Cadastro</h1>
 		<h5 class="text-danger">Obs: só fazemos entregas em Nova Iguaçu!</h5>
-		<form action="../ClienteInsertServlet" method="POST"
-			class="rounded">
+		<form action="../ClienteInsertServlet" method="POST" class="rounded">
 			<div class="mb-4 row">
 
 
@@ -83,7 +82,6 @@
 						id="numeroCelular" class="form-control"
 						placeholder="(99) 9999-9999"
 						pattern="(\([0-9]{2}\))\s([9]{1})?([0-9]{4})-([0-9]{4})"
-						title="Número de telefone precisa ser no formato (99) 9999-9999"
 						required="required">
 				</div>
 			</div>
@@ -101,7 +99,7 @@
 				<div class="col-10">
 					<label for="rua" class="form-label">Rua</label> <input type="text"
 						required name="rua" id="logradouro" class="form-control"
-						placeholder="" aria-describedby="helpId">
+						placeholder="" readonly aria-describedby="helpId" >
 				</div>
 
 				<div class="col">
@@ -115,13 +113,13 @@
 				<div class="col">
 					<label for="bairro" class="form-label">Bairro</label> <input
 						type="text" required name="bairro" id="bairro"
-						class="form-control" placeholder="" aria-describedby="helpId">
+						class="form-control" placeholder="" aria-describedby="helpId" readonly>
 				</div>
 
 				<div class="col">
 					<label for="cidade" class="form-label">Cidade</label> <input
-						value="Nova Iguaçu" name="cidade" id="localidade"
-						class="form-control " placeholder="" aria-describedby="helpId">
+					 name="cidade" id="localidade"
+						class="form-control " placeholder="" aria-describedby="helpId" readonly>
 				</div>
 			</div>
 
@@ -141,8 +139,7 @@
 				</div>
 
 			</div>
-			<div id="button-submit" class="d-flex justify-content-center"
-			>
+			<div id="button-submit" class="d-flex justify-content-center">
 				<input id="finalizar" class="btn" type="submit"
 					value="Finalizar o cadastro">
 			</div>
@@ -152,6 +149,23 @@
 
 	</main>
 
+
+	<script type="text/javascript">
+ var inputPhone = document.querySelector("#numeroCelular");
+
+    inputPhone.addEventListener("blur", () => {
+      if (inputPhone.value.length == 11) {
+        var dd = inputPhone.value[0] + inputPhone.value[1];
+       var numero1 = inputPhone.value[2] + inputPhone.value[3] + inputPhone.value[4] + inputPhone.value[5] + inputPhone.value[6] ;
+       var numero2 = inputPhone.value[7] + inputPhone.value[8] + inputPhone.value[9] + inputPhone.value[10];
+       var  numeroFormatado = "("+dd+")"+" "+numero1+"-"+numero2;
+       inputPhone.value =numeroFormatado;
+
+      }
+
+    })
+  </script>
+  <script src="../public/js/login/viaCep.js" type="text/javascript"></script>
 	<script src="https://cdn.lordicon.com/ritcuqlt.js"></script>
 
 	<!-- Bootstrap JavaScript Libraries -->

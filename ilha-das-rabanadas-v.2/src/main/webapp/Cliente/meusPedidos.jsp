@@ -1,5 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+
+<%@ page import="com.ilhaDasRabanadas.bean.*,com.ilhaDasRabanadas.dao.*"%>
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%
+Integer id = (Integer) session.getAttribute("id");
+Cliente cliente = new Cliente();
+
+boolean teste = cliente.validarCliente(id);
+if (!teste) {
+
+	response.sendRedirect("../Home/home.jsp");
+
+} else {
+	cliente = ClienteDao.getElementByIdLogin(id);
+	request.setAttribute("cliente", cliente);
+
+}
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,9 +46,42 @@
 <body>
 
 	<%
-	Integer id = (Integer) session.getAttribute("id");
+	String pedidomsg = (String) session.getAttribute("pedidomsg");
+
+	// Remove o atributo da sess�o
+	if (pedidomsg != null) {
+	%>
+	<div class="toast-container position-fixed top-0 end-0 p-3 "
+		style="z-index: 11;">
+		<div id='toast' class='toast ' role='alert' aria-live='assertive'
+			aria-atomic='true'>
+			<div class='toast-header d-flex justify-content-between'>
+				<i class='bi bi-info-circle'></i>
+
+
+				<button type='button' class='btn-close' data-bs-dismiss='toast'
+					aria-label='Close'></button>
+			</div>
+			<div class='toast-body '>${pedidomsg}</div>
+		</div>
+	</div>
+	<script>
+        onload = () => {
+            const toastEl = document.getElementById("toast");
+
+            const toast = new bootstrap.Toast(toastEl);
+
+            toast.show();
+        };
+    </script>
+	<%
+	session.removeAttribute("pedidomsg");
+
+	}
+	%>
+	<%
 	//---intanciando o obj cliente
-	Cliente cliente = ClienteDao.getElementByIdLogin(id);
+	cliente = ClienteDao.getElementByIdLogin(id);
 	int clienteId = cliente.getIdCliente();
 	//---instacindo o obj pedido
 	Pedido pedido = PedidoDao.getAllOrderedByIdCliente(clienteId);
@@ -37,113 +90,123 @@
 
 	<jsp:include page="../Headers/header-dashboard-cliente.jsp"></jsp:include>
 
-	<div class="table-responsive">
-		<div class="container">
-			<table class="table table-hover">
-
-				<thead>
-					<tr>
-						<th scope="col">Código do Pedido</th>
-						<th scope="col">Produto encomendado</th>
-						<th scope="col">Data da entrega</th>
-						<th scope="col">Hora da entrega</th>
-						<th scope="col">Endereço</th>
-						<th scope="col">Quantidade do Pedido</th>
-						<th scope="col">Valor</th>
-						<th scope="col">Forma de Pagamento</th>
-						<th scope="col">troco</th>
-						<th scope="col" colspan="2">Açoes</th>
-					</tr>
-				</thead>
-				<tbody>
-
-
-
-					<tr class=''>
-						<td scope='row'>${pedido.getIdPedido()}</td>
-						<td>${pedido.getNomeProduto()}</td>
-						<td>${pedido.getDataEntrega()}</td>
-						<td>${pedido.getHora()}</td>
-						<td>${pedido.getEndereco()}</td>
-						<td>${pedido.getQuantidadePedido()}</td>
-						<td>${pedido.getValorPedido()}</td>
-
-						<td>${pedido.getFormaPagamento()}</td>
-						<td>${pedido.getTroco()}</td>
-
-						<td>
-							<button type='button' class='btn btn-outline-success '
-								data-bs-toggle='modal' data-bs-target='#edit$idPedido'>
-								<i class='bi bi-pencil'></i> <span>Editar Pedido</span>
-							</button>
-							<button type='button' class='btn btn-outline-danger'
-								data-bs-toggle='modal' data-bs-target='#cancel$idPedido'>
-								<i class='bi    bi-trash'></i> <span>Cancelar</span>
-							</button>
-						</td>
-					</tr>
-					<div class='modal fade' id='cancel$idPedido' tabindex='-1'
-						role='dialog' aria-labelledby='modalTitleId' aria-hidden='true'>
-						<div
-							class='modal-dialog modal-dialog-scrollable modal-dialog-centered modal'
-							role='document'>
-							<div class='modal-content'>
-								<div class='modal-header'>
-									<h5 class='modal-title' id='modalTitleId'>Jutifique seu
-										cancelamento!</h5>
-									<button type='button' class='btn-close' data-bs-dismiss='modal'
-										aria-label='Close'></button>
-								</div>
-								<div class='modal-body'>
-									<h6>Codigo do Pedido</h6>
-									<input type='text' name='justificativa' id='codigoPedido'
-										value='$idPedido' required class='form-control'>
-									<h6>Sua justificativa!</h6>
-									<input type='text' name='justificativa' id='justify' required
-										class='form-control'>
-								</div>
-								<div class='modal-footer'>
-									<button type='button' class='btn btn-secondary'
-										data-bs-dismiss='modal'>cancelar</button>
-									<button id='justifyCancel' type='button'
-										class='btn btn-primary'>Enviar</button>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class='modal fade' id='edit$idPedido' tabindex='-1'
-						role='dialog' aria-labelledby='modalTitleId' aria-hidden='true'>
-						<div
-							class='modal-dialog modal-dialog-scrollable modal-dialog-centered modal'
-							role='document'>
-							<div class='modal-content'>
-								<div class='modal-header'>
-									<h5 class='modal-title' id='modalTitleId'>Indique o dado
-										que você quer mudar!</h5>
-									<button type='button' class='btn-close' data-bs-dismiss='modal'
-										aria-label='Close'></button>
-								</div>
-								<div class='modal-body'>
-									<h6>Codigo do Pedido</h6>
-									<input type='text' name='justificativa' id='codigoPedido'
-										value='$idPedido' required readonly class='form-control'>
-									<h6>Dados do pedido a ser mudado!</h6>
-									<input type='text' name='dado' id='dado' required
-										class='form-control'>
-								</div>
-								<div class='modal-footer'>
-									<button type='button' class='btn btn-secondary'
-										data-bs-dismiss='modal'>cancelar</button>
-									<button id='edit' type='button' class='btn btn-primary'>Enviar</button>
-								</div>
-							</div>
-						</div>
-					</div>
-
-
-				</tbody>
-			</table>
+	<c:if test="${pedido.getIdPedido()== 0}">
+		<div class="text-center">
+			<img src="../public/imgs/pedidos/naoHaPedidos.webp" alt=""></img>
+			<h4>Voc� ainda n�o fez um pedido!</h4>
 		</div>
+	</c:if>
+	<c:if test="${pedido.getIdPedido() > 0}">
+		<div class="table-responsive">
+			<div class="container">
+				<table class="table table-hover">
+
+					<thead>
+						<tr>
+							<th scope="col">C�digo do Pedido</th>
+							<th scope="col">Produto encomendado</th>
+							<th scope="col">Data da entrega</th>
+							<th scope="col">Hora da entrega</th>
+							<th scope="col">Endere�o</th>
+							<th scope="col">Quantidade do Pedido</th>
+							<th scope="col">Valor</th>
+							<th scope="col">Forma de Pagamento</th>
+							<th scope="col">troco</th>
+							<th scope="col" colspan="2">A�oes</th>
+						</tr>
+					</thead>
+					<tbody>
+
+
+
+						<tr class=''>
+							<td scope='row'>${pedido.getIdPedido()}</td>
+							<td>${pedido.getNomeProduto()}</td>
+							<td>${pedido.getDataEntrega()}</td>
+							<td>${pedido.getHora()}</td>
+							<td>${pedido.getEndereco()}</td>
+							<td>${pedido.getQuantidadePedido()}</td>
+							<td>${pedido.getValorPedido()}</td>
+
+							<td>${pedido.getFormaPagamento()}</td>
+							<td>${pedido.getTroco()}</td>
+
+							<td>
+								<button type='button' class='btn btn-outline-success '
+									data-bs-toggle='modal' data-bs-target='#edit$idPedido'>
+									<i class='bi bi-pencil'></i> <span>Editar Pedido</span>
+								</button>
+								<button type='button' class='btn btn-outline-danger'
+									data-bs-toggle='modal' data-bs-target='#cancel$idPedido'>
+									<i class='bi    bi-trash'></i> <span>Cancelar</span>
+								</button>
+							</td>
+						</tr>
+						<div class='modal fade' id='cancel$idPedido' tabindex='-1'
+							role='dialog' aria-labelledby='modalTitleId' aria-hidden='true'>
+							<div
+								class='modal-dialog modal-dialog-scrollable modal-dialog-centered modal'
+								role='document'>
+								<div class='modal-content'>
+									<div class='modal-header'>
+										<h5 class='modal-title' id='modalTitleId'>Jutifique seu
+											cancelamento!</h5>
+										<button type='button' class='btn-close'
+											data-bs-dismiss='modal' aria-label='Close'></button>
+									</div>
+									<div class='modal-body'>
+										<h6>Codigo do Pedido</h6>
+										<input type='text' name='justificativa' id='codigoPedido'
+											value='$idPedido' required class='form-control'>
+										<h6>Sua justificativa!</h6>
+										<input type='text' name='justificativa' id='justify' required
+											class='form-control'>
+									</div>
+									<div class='modal-footer'>
+										<button type='button' class='btn btn-secondary'
+											data-bs-dismiss='modal'>cancelar</button>
+										<button id='justifyCancel' type='button'
+											class='btn btn-primary'>Enviar</button>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class='modal fade' id='edit$idPedido' tabindex='-1'
+							role='dialog' aria-labelledby='modalTitleId' aria-hidden='true'>
+							<div
+								class='modal-dialog modal-dialog-scrollable modal-dialog-centered modal'
+								role='document'>
+								<div class='modal-content'>
+									<div class='modal-header'>
+										<h5 class='modal-title' id='modalTitleId'>Indique o dado
+											que voc� quer mudar!</h5>
+										<button type='button' class='btn-close'
+											data-bs-dismiss='modal' aria-label='Close'></button>
+									</div>
+									<div class='modal-body'>
+										<h6>Codigo do Pedido</h6>
+										<input type='text' name='justificativa' id='codigoPedido'
+											value='$idPedido' required readonly class='form-control'>
+										<h6>Dados do pedido a ser mudado!</h6>
+										<input type='text' name='dado' id='dado' required
+											class='form-control'>
+									</div>
+									<div class='modal-footer'>
+										<button type='button' class='btn btn-secondary'
+											data-bs-dismiss='modal'>cancelar</button>
+										<button id='edit' type='button' class='btn btn-primary'>Enviar</button>
+									</div>
+
+								</div>
+							</div>
+						</div>
+
+
+					</tbody>
+				</table>
+			</div>
+	</c:if>
+
 
 
 	</div>

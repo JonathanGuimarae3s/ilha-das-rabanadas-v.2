@@ -25,7 +25,17 @@
 <link rel="icon" href="../public/imgs/img/palmeira.png">
 <href ="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 </head>
-<body>
+<body><%
+	Integer id = (Integer) session.getAttribute("id");
+
+	Cliente cliente = new Cliente();
+	boolean teste = cliente.validarCliente(id);
+	if (teste) {
+
+		response.sendRedirect("../Home/home.jsp");
+
+	}
+	%>
 	<%
 	
 

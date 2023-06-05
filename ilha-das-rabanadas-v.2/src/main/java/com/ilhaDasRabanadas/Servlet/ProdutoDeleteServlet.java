@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.ilhaDasRabanadas.bean.Produto;
 import com.ilhaDasRabanadas.dao.ProdutoDao;
@@ -38,16 +39,21 @@ public class ProdutoDeleteServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		int idProduto = Integer.parseInt(request.getParameter("idProduto"));
-		Produto produto = new Produto();
-		produto.setIdProduto(idProduto);
+		HttpSession session = request.getSession();
+		
+	String idProduto=request.getParameter("idProduto");
+	
 		try {
+		
 			ProdutoDao produtoDao = new ProdutoDao();
-			produtoDao.deleteProduct(produto);
+			produtoDao.deleteProduct(idProduto);
+			
+			session.setAttribute("produtomsg", "Produto deletado com sucesso!");
 			response.sendRedirect("Adm/Produtos.jsp");
 		} catch (Exception e) {
 			// TODO: handle exception
 			System.out.println(e.getMessage());
+			session.setAttribute("produtomsg", "Erro na deleção!Possivelmente há pedido com esse produto!");
 		}
 		
 	}

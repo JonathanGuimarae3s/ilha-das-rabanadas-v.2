@@ -101,16 +101,15 @@ public class ProdutoDao extends Conexao {
 		}
 	}
 
-	public static void deleteProduct(Produto produto) {
-		String id = Integer.toString(produto.getIdProduto());
+	public static void deleteProduct(String idProduto) {
+
 		try {
 			open();
-			String sql = "DELETE FROM produto WHERE `produto`.`idProduto` = ?";
+			String sql = "DELETE FROM produto WHERE idProduto=?";
 			stmt = con.prepareStatement(sql);
-			stmt.setString(1, id);
+			stmt.setString(1, idProduto);
 			stmt.execute();
 		} catch (Exception e) {
-			System.out.println(produto.getNomeProduto());
 			System.out.println("error na inserção");
 			System.out.println(e);
 		}

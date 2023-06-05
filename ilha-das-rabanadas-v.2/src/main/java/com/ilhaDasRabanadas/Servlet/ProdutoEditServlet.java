@@ -13,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
 import com.ilhaDasRabanadas.bean.Produto;
@@ -46,7 +47,10 @@ public class ProdutoEditServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{ // TODO Auto-generated method stub
-	String imageDb = "";
+		HttpSession session = request.getSession();
+		session.setAttribute("produtomsg", "Produto editado com sucesso!");
+		
+		String imageDb = "";
 	Part filePart = request.getPart("imagem");
 
 	// Obtém o nome original do arquivo

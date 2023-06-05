@@ -1,0 +1,105 @@
+@charset "ISO-8859-1";
+
+section {
+	background: rgba(217, 180, 72, 0.3);
+	height: max-content;
+}
+
+form {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	width: 100%;
+}
+
+.card {
+	width: 65%;
+}
+
+.col {
+	max-height: 100%;
+	max-width: 30%;
+}
+
+.card-body {
+	width: max-content;
+}
+
+input[type=number] {
+	width: 40% !important;
+	display: inline;
+}
+
+#valorPedido {
+	background-color: transparent;
+}
+
+#valorPedido:focus-visible {
+	outline: 0px;
+}
+
+#buttons {
+	width: 65%;
+	gap: 30%;
+	align-items: center;
+	justify-content: center;
+	margin-top: 2em;
+}
+
+#buttons>input, button {
+	width: max-content;
+	height: 3em;
+}
+
+section {
+	background: rgba(217, 180, 72, 0.3);
+	height: max-content;
+}
+
+form {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	width: 100%;
+}
+
+.card {
+	width: 65%;
+}
+
+.col {
+	max-height: 100%;
+	max-width: 30%;
+}
+
+.card-body {
+	width: max-content;
+}
+
+input[type=number] {
+	width: 40% !important;
+	display: inline;
+}
+
+#valorPedido {
+	background-color: transparent;
+}
+
+#valorPedido:focus-visible {
+	outline: 0px;
+}
+
+#buttons {
+	width: 65%;
+	gap: 30%;
+	align-items: center;
+	justify-content: center;
+	margin-top: 2em;
+}
+
+#buttons>input, button {
+	width: max-content;
+	height: 3em;
+}

@@ -50,7 +50,17 @@ tr:nth-child(even) {
 <body>
 <head>
 <title>Ilhas das Rabanadas</title>
-<body>
+<body><%
+	Integer id = (Integer) session.getAttribute("id");
+
+	Cliente cliente = new Cliente();
+	boolean teste = cliente.validarCliente(id);
+	if (teste) {
+
+		response.sendRedirect("../Home/home.jsp");
+
+	}
+	%>
 
 	<div class="container-fluid " id="header">
 		<header

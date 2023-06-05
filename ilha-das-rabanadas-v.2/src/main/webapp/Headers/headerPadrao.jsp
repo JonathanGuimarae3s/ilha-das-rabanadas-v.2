@@ -1,34 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Home</title>
-</head>
-
-<style>
-
-nav{
-font-weight:bold;
-}
-@media  (max-width:500px){
-
-#img2{
-	width:35%;
-}
-}
-
-@media  (max-width:920px){
-
-#img2{
-	width:30%;
-}
-}
-</style>
-
-<body>
-
 
 <nav id="header" class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
@@ -55,6 +24,3 @@ font-weight:bold;
     </div>
   </div>
 </nav>
-
-</body>
-</html>

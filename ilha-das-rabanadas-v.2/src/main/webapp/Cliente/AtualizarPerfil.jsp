@@ -5,7 +5,18 @@
 
 <%@ page import="com.ilhaDasRabanadas.dao.ClienteDao"%>
 
+<%
+Integer id = (Integer) session.getAttribute("id");
+Cliente cliente = new Cliente();
 
+if (cliente.validarCliente(id)) {
+	response.sendRedirect("../Home/home.jsp");
+} else {
+	cliente = ClienteDao.getElementByIdLogin(id);
+	request.setAttribute("cliente", cliente);
+
+}
+%>
 <!doctype html>
 <html lang="pt-br">
 
@@ -25,7 +36,7 @@
 
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
-	<link rel="stylesheet" href="../public/css/style.css">
+<link rel="stylesheet" href="../public/css/style.css">
 <link rel="stylesheet" href="../public/css/form/forms.css">
 <link rel="icon" href="../public/imgs/img/palmeira.png">
 
@@ -33,11 +44,6 @@
 <body>
 
 
-<%
-Integer id = (Integer) session.getAttribute("id");
-Cliente cliente = ClienteDao.getElementByIdLogin(id);
-request.setAttribute("cliente", cliente);
-%>
 
 
 	<div class="container-fluid " id="header">
@@ -54,7 +60,8 @@ request.setAttribute("cliente", cliente);
 			</a>
 
 			<div class="col-md-3 text-center m-auto">
-				  <img width="60%" src="../public/imgs/img/logo-dashboards.webp" alt="">
+				<img width="60%" src="../public/imgs/img/logo-dashboards.webp"
+					alt="">
 			</div>
 		</header>
 	</div>

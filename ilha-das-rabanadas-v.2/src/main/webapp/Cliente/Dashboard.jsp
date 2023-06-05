@@ -1,17 +1,21 @@
 <%@page import="java.lang.ProcessBuilder.Redirect"%>
-<%@page import="org.apache.jasper.tagplugins.jstl.core.If"%>
+<%@ page import="java.util.*"%>
+<%@ page import="com.ilhaDasRabanadas.bean.Cliente"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+
+<%@ page import="com.ilhaDasRabanadas.bean.Cliente"%>
 <%
 Integer id = (Integer) session.getAttribute("id");
 
+Cliente cliente = new Cliente();
+boolean teste=cliente.validarCliente(id);
+if (!teste) {
 
- if(id==null || id<1){
 	response.sendRedirect("../Home/home.jsp");
-	 
- }
-
-
+	
+}
 %>
 
 <!doctype html>
@@ -44,11 +48,45 @@ Integer id = (Integer) session.getAttribute("id");
 </head>
 
 <body>
-<body>
+	<%
+	String boasVindas = (String) session.getAttribute("boasVindas");
+
+	// Remove o atributo da sessão
+	if (boasVindas != null) {
+	%>
+	<div class='toast-container position-fixed top-0 end-0 p-3 '>
+		<div id='toast' class='toast ' role='alert' aria-live='assertive'
+			aria-atomic='true'>
+			<div class='toast-header d-flex justify-content-between'>
+				<i class='bi bi-info-circle'></i>
+
+
+				<button type='button' class='btn-close' data-bs-dismiss='toast'
+					aria-label='Close'></button>
+			</div>
+			<div class='toast-body '>${boasVindas}</div>
+		</div>
+	</div>
+	<script>
+        onload = () => {
+            const toastEl = document.getElementById("toast");
+
+            const toast = new bootstrap.Toast(toastEl);
+
+            toast.show();
+        };
+    </script>
+	<%
+	session.removeAttribute("boasVindas");
+	}
+	%>
+
+
+
 	<jsp:include page="../Headers/header-dashboards.jsp"></jsp:include>
 
 	<main>
-		<h1 class="text-center my-4">Área do Cliente</h1>
+		<h1 class="text-center my-4">Área do Cliente ${msg}</h1>
 		<div class="container">
 			<div id="container-cards" class=" d-flex  justify-content-evenly">
 				<div class="card">
@@ -81,6 +119,10 @@ Integer id = (Integer) session.getAttribute("id");
 		</div>
 	</main>
 
+
+
+
+
 	<!-- Bootstrap JavaScript Libraries -->
 	<script src="https://cdn.lordicon.com/ritcuqlt.js"></script>
 	<script
@@ -94,7 +136,7 @@ Integer id = (Integer) session.getAttribute("id");
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
 		integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz"
 		crossorigin="anonymous">
-		
+	
 	</script>
 
 

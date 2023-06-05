@@ -1,3 +1,4 @@
+<%@page import="com.ilhaDasRabanadas.bean.Cliente"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 
@@ -31,7 +32,17 @@
 	<%@ page import="com.ilhaDasRabanadas.bean.Produto"%>
 
 	<%@ page import="com.ilhaDasRabanadas.dao.ProdutoDao"%>
-	
+	<%
+	Integer id = (Integer) session.getAttribute("id");
+
+	Cliente cliente = new Cliente();
+	boolean teste = cliente.validarCliente(id);
+	if (teste) {
+
+		response.sendRedirect("../Home/home.jsp");
+
+	}
+	%>
 
 	<%
 	Produto produto = ProdutoDao.getElementById(request.getParameter("id"));
