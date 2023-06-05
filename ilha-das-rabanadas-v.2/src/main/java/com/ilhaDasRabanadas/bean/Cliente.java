@@ -90,11 +90,25 @@ public class Cliente {
 
 	public void setCidade(String cidade) {
 		this.cidade = cidade;
-	
+
 	}
+
 	public String getEndereco() {
-		String endereco = getRua()+","+getNumero()+", "+getBairro()+", "+getCidade();
+		String endereco = getRua() + "," + getNumero() + ", " + getBairro() + ", " + getCidade();
 		return endereco;
+	}
+
+	public boolean validarCliente(Integer id) {
+		boolean result = false;
+		if (id == null || id <= 1) {
+
+			result = false;
+			return result;
+		} else {
+			result = true;
+			return result;
+			
+		}
 	}
 
 }

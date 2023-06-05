@@ -28,13 +28,24 @@
 </head>
 <body>
 <body>
+
 	<%
+	Integer id = (Integer) session.getAttribute("id");
+	Cliente cliente = new Cliente();
+	boolean teste = cliente.validarCliente(id);
+	if (!teste) {
+
+		response.sendRedirect("../Home/home.jsp");
+
+	}
+
 	String atualizado = (String) session.getAttribute("atualizado");
 
 	// Remove o atributo da sessão
 	if (atualizado != null) {
 	%>
-	<div class="toast-container position-fixed top-0 end-0 p-3 " style="z-index:11;">
+	<div class="toast-container position-fixed top-0 end-0 p-3 "
+		style="z-index: 11;">
 		<div id='toast' class='toast ' role='alert' aria-live='assertive'
 			aria-atomic='true'>
 			<div class='toast-header d-flex justify-content-between'>
@@ -58,19 +69,14 @@
     </script>
 	<%
 	session.removeAttribute("atualizado");
-	
+
 	}
 	%>
 
 	<jsp:include page="../Headers/header-dashboard-cliente.jsp"></jsp:include>
 	<%
-	Integer id = (Integer) session.getAttribute("id");
-	if (id == null) {
-		response.sendRedirect("../Login/login.jsp");
-	} else {
-		Cliente cliente = ClienteDao.getElementByIdLogin(id);
-		request.setAttribute("cliente", cliente);
-	}
+	cliente = ClienteDao.getElementByIdLogin(id);
+	request.setAttribute("cliente", cliente);
 	%>
 	<div
 		class="container d-flex justify-content-center align-items-center my-5 flex-column gap-3">

@@ -1,14 +1,20 @@
 <%@page import="java.lang.ProcessBuilder.Redirect"%>
 <%@ page import="java.util.*"%>
+<%@ page import="com.ilhaDasRabanadas.bean.Cliente"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+
+<%@ page import="com.ilhaDasRabanadas.bean.Cliente"%>
 <%
 Integer id = (Integer) session.getAttribute("id");
 
-if (id == null || id < 1) {
-	response.sendRedirect("../Home/home.jsp");
+Cliente cliente = new Cliente();
+boolean teste=cliente.validarCliente(id);
+if (!teste) {
 
+	response.sendRedirect("../Home/home.jsp");
+	
 }
 %>
 
@@ -71,7 +77,7 @@ if (id == null || id < 1) {
         };
     </script>
 	<%
-	session.removeAttribute(boasVindas);
+	session.removeAttribute("boasVindas");
 	}
 	%>
 

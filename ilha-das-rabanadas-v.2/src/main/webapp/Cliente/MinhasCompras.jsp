@@ -33,15 +33,22 @@
 <link rel="stylesheet" href="../public/css/style.css">
 <link rel="stylesheet" href="../public/css/carrinho/carrinho.css">
 <style>
-
 </style>
 </head>
 
 <body>
 
-
 	<%
 	Integer id = (Integer) session.getAttribute("id");
+	Cliente cliente = new Cliente();
+
+	boolean teste = cliente.validarCliente(id);
+	if (!teste) {
+
+		response.sendRedirect("../Home/home.jsp");
+
+	}
+
 	SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yyyy");
 	String produtoId = request.getParameter("product");
 	Date dataAtual = new Date();
@@ -51,8 +58,8 @@
 
 	} else {
 		if (produtoId == null && id != null) {
-			
-			Cliente cliente = ClienteDao.getElementByIdLogin(id);
+
+			cliente = ClienteDao.getElementByIdLogin(id);
 			Carrinho carrinho = CarrinhoDao.getMyProducts(cliente.getIdCliente());
 			request.setAttribute("cliente", cliente);
 
@@ -60,12 +67,12 @@
 			request.setAttribute("produto", produto);
 
 		} else {
-			Cliente cliente = ClienteDao.getElementByIdLogin(id);
+			cliente = ClienteDao.getElementByIdLogin(id);
 			request.setAttribute("cliente", cliente);
 
 			Produto produto = ProdutoDao.getElementById(produtoId);
 			request.setAttribute("produto", produto);
-		 CarrinhoDao.insert(produto.getIdProduto(),cliente.getIdCliente());
+			CarrinhoDao.insert(produto.getIdProduto(), cliente.getIdCliente());
 		}
 
 	}
@@ -170,14 +177,14 @@
 
 			</section>
 		</c:if>
-		
+
 		<c:if test="${produto.getIdProduto()== 0}">
 			<div class="text-center">
 				<img src="../public/imgs/pedidos/naoHaPedidos.webp" alt=""></img>
 				<h4>Seu carrinho está vazio!</h4>
 			</div>
 		</c:if>
-		
+
 
 
 
