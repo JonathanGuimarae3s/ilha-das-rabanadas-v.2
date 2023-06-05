@@ -96,6 +96,7 @@ public class Cliente {
 	public String getEndereco() {
 		String endereco = getRua() + "," + getNumero() + ", " + getBairro() + ", " + getCidade();
 		return endereco;
+
 	}
 
 	public boolean validarCliente(Integer id) {

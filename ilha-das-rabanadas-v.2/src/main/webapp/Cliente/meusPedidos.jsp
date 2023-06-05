@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+
 <%@ page import="com.ilhaDasRabanadas.bean.*,com.ilhaDasRabanadas.dao.*"%>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -18,6 +19,7 @@ if (!teste) {
 
 }
 %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,9 +39,12 @@ if (!teste) {
 <link rel="stylesheet" href="../public/css/style.css">
 <link rel="stylesheet">
 <link rel="icon" href="../public/imgs/img/palmeira.png">
-<href ="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+	<href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+
+
 </head>
 <body>
+
 	<%
 	String pedidomsg = (String) session.getAttribute("pedidomsg");
 
@@ -82,11 +87,14 @@ if (!teste) {
 	Pedido pedido = PedidoDao.getAllOrderedByIdCliente(clienteId);
 	request.setAttribute("pedido", pedido);
 	%>
+
 	<jsp:include page="../Headers/header-dashboard-cliente.jsp"></jsp:include>
+
 	<c:if test="${pedido.getIdPedido()== 0}">
 		<div class="text-center">
 			<img src="../public/imgs/pedidos/naoHaPedidos.webp" alt=""></img>
 			<h4>Você ainda não fez um pedido!</h4>
+
 		</div>
 	</c:if>
 	<c:if test="${pedido.getIdPedido() > 0}">
