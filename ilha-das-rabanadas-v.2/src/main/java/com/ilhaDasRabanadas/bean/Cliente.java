@@ -91,7 +91,6 @@ public class Cliente {
 	public void setCidade(String cidade) {
 		this.cidade = cidade;
 
-
 	}
 
 	public String getEndereco() {

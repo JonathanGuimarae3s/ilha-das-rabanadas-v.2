@@ -93,7 +93,9 @@ if (!teste) {
 	<c:if test="${pedido.getIdPedido()== 0}">
 		<div class="text-center">
 			<img src="../public/imgs/pedidos/naoHaPedidos.webp" alt=""></img>
-			<h4>Vocï¿½ ainda nï¿½o fez um pedido!</h4>
+
+			<h4>Você ainda não fez um pedido!</h4>
+
 		</div>
 	</c:if>
 	<c:if test="${pedido.getIdPedido() > 0}">

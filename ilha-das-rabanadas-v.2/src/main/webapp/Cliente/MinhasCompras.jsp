@@ -1,5 +1,4 @@
 
-
 <%@page import="org.apache.jasper.tagplugins.jstl.core.If"%>
 <%@page import="com.ilhaDasRabanadas.dao.*"%>
 <%@page import="com.ilhaDasRabanadas.bean.*"%>
@@ -9,8 +8,11 @@
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ page import="com.ilhaDasRabanadas.bean.Cliente"%>
+
 
 <%@ page import="java.util.Date,java.text.SimpleDateFormat"%>
+
 
 
 
@@ -34,14 +36,68 @@
 	crossorigin="anonymous">
 
 
+
 <link rel="stylesheet" href="../public/css/style.css">
 <link rel="stylesheet" href="../public/css/carrinho/carrinho.css">
 
+
 <style>
+section {
+	background: rgba(217, 180, 72, 0.3);
+	height: max-content;
+}
+
+form {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	width: 100%;
+}
+
+.card {
+	width: 65%;
+}
+
+.col {
+	max-height: 100%;
+	max-width: 30%;
+}
+
+.card-body {
+	width: max-content;
+}
+
+input[type=number] {
+	width: 40% !important;
+	display: inline;
+}
+
+#valorPedido {
+	background-color: transparent;
+}
+
+#valorPedido:focus-visible {
+	outline: 0px;
+}
+
+#buttons {
+	width: 65%;
+	gap: 30%;
+	align-items: center;
+	justify-content: center;
+	margin-top: 2em;
+}
+
+#buttons>input, button {
+	width: max-content;
+	height: 3em;
+}
 </style>
 </head>
 
 <body>
+
 
 	<%
 
@@ -83,6 +139,7 @@
 
 	}
 
+
 	%>
 
 	<!-- Bootstrap JavaScript Libraries -->
@@ -94,42 +151,55 @@
 
 		<h1 class="text-center">Seu carrinho</h1>
 
+
 		<c:if test="${produto.getIdProduto()!= 0}">
 
+		<div class="text-center">
+			<img src="../public/imgs/pedidos/naoHaPedidos.webp" alt=""></img>
+			<h4>Seu carrinho está vazio!</h4>
+		</div>
 
-			<section class="container  flex-column p-4">
-				<form action="../PedidoInsertServlet" method="POST">
-					<input type="hidden" name="idCliente"
-						value="${cliente.getIdCliente()}"> <input type="hidden"
-						name="nomeProduto" value="${produto.getNomeProduto()}">
-					<div class="card   mb-3">
-						<div class="row  align-items-center g-0">
-							<div class="col">
-								<img src="${produto.getImagem()}" class="" alt="..."
-									height="100%" width="90%">
-							</div>
-							<div class="col">
-								<div class="card-body">
-									<h5 class="card-title">${produto.getNomeProduto()}</h5>
-									<p class="card-text">
-										Valor:<span class="fw-bold" id="preco">${produto.getPreco()}</span>
-									<div class="mb-3">
-										<label class=" mb-2 form-label"> <label>Quantidade</label>
-											<input type="number" name="quantidadePedido" value="1"
-											id="quantidadePedido" min="1" class="form-control"
-											placeholder="" aria-describedby="helpId">
-										</label>
-									</div>
-									<div>
+
+		<section class="container  flex-column p-4">
+			<form action="../pedido/insert" method="POST">
+
+				<input type="hidden" name="idCliente"
+					value=" ${cliente.getIdCliente()}"> <input type="hidden"
+					name="idProduto" value="${produto.getIdProduto()}">
+
+				<div class="card   mb-3">
+					<div class="row  align-items-center g-0">
+						<div class="col">
+							<img src="" class="" alt="..." height="100%" width="90%">
+						</div>
+						<div class="col">
+							<div class="card-body">
+								<h5 class="card-title"></h5>
+								<p class="card-text">
+									Valor:<span class="fw-bold" id="preco"></span>
+								<div class="mb-3">
+									<label class=" mb-2 form-label"> <label>Quantidade</label>
+										<input type="number" name="quantidadePedido" value="1"
+										id="quantidadePedido" min="1" class="form-control"
+										placeholder="" aria-describedby="helpId">
+									</label>
+								</div>
+								<div>
+
+									<p>Total:</p>
+									<input type="text" value="" id="valorPedido" class="border-0"
+										name="valorPedido" readonly>
 
 										<p>Total:</p>
 										<input type="text" value="R$5,00" id="valorPedido"
 											class="border-0" name="valorPedido" readonly>
-									</div
+									</div>
+
 								</div>
 							</div>
 						</div>
 					</div>
+
 
 					<div class="card   mb-3">
 						<div class="row g-0">
@@ -195,6 +265,7 @@
 
 
 
+		</section>
 
 	</main>
 
