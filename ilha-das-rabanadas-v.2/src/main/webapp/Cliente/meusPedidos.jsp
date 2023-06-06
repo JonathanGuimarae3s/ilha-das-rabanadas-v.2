@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+
 <%@ page import="com.ilhaDasRabanadas.bean.*,com.ilhaDasRabanadas.dao.*"%>
 <%@page import="java.util.List"%>
 
@@ -19,6 +20,7 @@ if (!teste) {
 
 }
 %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -38,13 +40,16 @@ if (!teste) {
 <link rel="stylesheet" href="../public/css/style.css">
 <link rel="stylesheet">
 <link rel="icon" href="../public/imgs/img/palmeira.png">
-<href ="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+	<href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+
+
 </head>
 <body>
+
 	<%
 	String pedidomsg = (String) session.getAttribute("pedidomsg");
 
-	// Remove o atributo da sessão
+	// Remove o atributo da sessÃ¯Â¿Â½o
 	if (pedidomsg != null) {
 	%>
 	<div class="toast-container position-fixed top-0 end-0 p-3 "
@@ -86,31 +91,36 @@ if (!teste) {
 
 	request.setAttribute("cidade", cidade);
 	%>
+
 	<jsp:include page="../Headers/header-dashboard-cliente.jsp"></jsp:include>
+
 
 	
 	<div class="container">
 	
 			<div class="table-responsive ">
+
 				<table class="table table-hover">
-					<c:if test="${cidade !='Nova Iguaçu'}">
-						<h4 class="text-danger my-3">Você não está elegivel para o
-							serviço de delivery!!</h4>
+					<c:if test="${cidade !='Nova IguaÃ§u'}">
+						<h4 class="text-danger my-3">VocÃª nÃ£o estÃ¡ elegivel para o
+							serviÃ§o de delivery!!</h4>
 					</c:if>
 
 
 					<thead>
 						<tr>
-							<th scope="col">Código do Pedido</th>
+							<th scope="col">CÃ¯Â¿Â½digo do Pedido</th>
 							<th scope="col">Produto encomendado</th>
 							<th scope="col">Data da entrega</th>
 							<th scope="col">Hora da entrega</th>
-							<th scope="col">Endereço</th>
+							<th scope="col">EndereÃ¯Â¿Â½o</th>
 							<th scope="col">Quantidade do Pedido</th>
 							<th scope="col">Valor</th>
 							<th scope="col">Forma de Pagamento</th>
+
 							<th scope="col">Troco</th>
-							<th scope="col" colspan="2">Ações</th>
+							<th scope="col" colspan="2">AÃ§Ãµes</th>
+
 						</tr>
 					</thead>
 					<tbody>
@@ -152,7 +162,7 @@ if (!teste) {
 								<div class='modal-content'>
 									<div class='modal-header'>
 										<h5 class='modal-title' id='modalTitleId'>Indique o dado
-											que você quer mudar!</h5>
+											que vocÃ¯Â¿Â½ quer mudar!</h5>
 										<button type='button' class='btn-close'
 											data-bs-dismiss='modal' aria-label='Close'></button>
 									</div>
@@ -169,6 +179,7 @@ if (!teste) {
 											data-bs-dismiss='modal'>cancelar</button>
 										<button id='edit' type='button' class='btn btn-primary'>Enviar</button>
 									</div>
+
 								</div>
 							</div>
 						</div>

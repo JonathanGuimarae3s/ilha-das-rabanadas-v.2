@@ -69,6 +69,7 @@ h1>p {
 
 .card-body {
 	background-color: white;
+	
 }
 
 video {
@@ -78,4 +79,8 @@ video {
 	min-width: 100%;
 	min-height: 100%;
 	z-index: -1000;
+
 }
+
+}
+

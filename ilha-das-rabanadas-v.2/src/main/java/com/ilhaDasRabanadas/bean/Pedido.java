@@ -7,14 +7,14 @@ import java.util.Date;
 
 public class Pedido {
 	protected int idPedido;
-	protected int idCliente;
-	public String nomeProduto;
 	public String dataEntrega;
 	public String hora;
 	public String valorPedido;
 	public String quantidadePedido;
+
 	public String endereco;
 	public String troco;
+
 	public String formaPagamento;
 
 	public String getTroco() {
@@ -53,6 +53,7 @@ public class Pedido {
 		this.nomeProduto = nomeProduto;
 	}
 
+
 	public void setIdPedido(int idPedido) {
 		this.idPedido = idPedido;
 	}
@@ -89,6 +90,7 @@ public class Pedido {
 		this.quantidadePedido = quantidadePedido;
 	}
 
+
 	public String getDataFormatada() {
 		String dataString = getDataEntrega();
 
@@ -113,6 +115,7 @@ public class Pedido {
 		return dataString;
 	}
 
+
 	public String getEndereco() {
 		return endereco;
 	}
@@ -120,5 +123,6 @@ public class Pedido {
 	public void setEndereco(String endereco) {
 		this.endereco = endereco;
 	}
+
 
 }

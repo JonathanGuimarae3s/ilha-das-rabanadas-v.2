@@ -44,26 +44,14 @@
 <body>
 
 
+
 	<%
 	Integer id = (Integer) session.getAttribute("id");
 
 	if (id == null || id < 1) {
 	%>
+
 	<jsp:include page="../Headers/headerPadrao.jsp"></jsp:include>
-
-
-
-	<%
-	} else if (id > 1) {
-	%>
-	<jsp:include page="../Headers/headerCliente.jsp"></jsp:include>
-	<%
-	} else {
-	%>
-	<jsp:include page="../Headers/headerAdm.jsp"></jsp:include>
-	<%
-	}
-	%>
 
 
 
@@ -83,15 +71,15 @@
 						width="70%" class="img-fluid rounded">
 				</div>
 				<div class="col">
-					<p class=" text">A missão da Ilha é proporcionar sabores
-						diferentes para que as pessoas lembrem de nós ao pensarem em
+					<p class=" text">A missÃ£o da Ilha Ã© proporcionar sabores
+						diferentes para que as pessoas lembrem de nÃ³s ao pensarem em
 						rabanadas. Uma empresa dedicada em atender da melhor maneira
-						nossos clientes e proporcionar uma experiência diferenciada para
-						nossos colaboradores. Na Ilha valorizamos a sua experiência
-						buscando eleva-la com um serviço de excelência e um atendimento
-						acolhedor. Na nossa visão buscamos ser referência em
-						comercialização de rabanadas na Baixada Fluminense até o ano de
-						2028, fazendo que elas sejam consumidas não apenas em período
+						nossos clientes e proporcionar uma experiÃªncia diferenciada para
+						nossos colaboradores. Na Ilha valorizamos a sua experiÃªncia
+						buscando eleva-la com um serviÃ§o de excelÃªncia e um atendimento
+						acolhedor. Na nossa visÃ£o buscamos ser referÃªncia em
+						comercializaÃ§Ã£o de rabanadas na Baixada Fluminense atÃ© o ano de
+						2028, fazendo que elas sejam consumidas nÃ£o apenas em perÃ­odo
 						natalino.</p>
 				</div>
 			</div>
@@ -115,7 +103,7 @@
 
 	<section class="container-fluid corSecundaria py-3">
 		<div class="container">
-			<h1 class="text-center">Nossa missão</h1>
+			<h1 class="text-center">Nossa missÃ£o</h1>
 			<div
 				class="row row-col  align-items-center  flex-md-column flex-lg-row flex-column">
 				<div class="col text-center">
@@ -124,15 +112,15 @@
 				</div>
 
 				<div class="col">
-					<p class=" text">A missão da Ilha é proporcionar sabores
-						diferentes para que as pessoas lembrem de nós ao pensarem em
+					<p class=" text">A missÃ£o da Ilha Ã© proporcionar sabores
+						diferentes para que as pessoas lembrem de nÃ³s ao pensarem em
 						rabanadas. Uma empresa dedicada em atender da melhor maneira
-						nossos clientes e proporcionar uma experiência diferenciada para
-						nossos colaboradores. Na Ilha valorizamos a sua experiência
-						buscando eleva-la com um serviço de excelência e um atendimento
-						acolhedor. Na nossa visão buscamos ser referência em
-						comercialização de rabanadas na Baixada Fluminense até o ano de
-						2028, fazendo que elas sejam consumidas não apenas em período
+						nossos clientes e proporcionar uma experiÃªncia diferenciada para
+						nossos colaboradores. Na Ilha valorizamos a sua experiÃªncia
+						buscando eleva-la com um serviÃ§o de excelÃªncia e um atendimento
+						acolhedor. Na nossa visÃ£o buscamos ser referÃªncia em
+						comercializaÃ§Ã£o de rabanadas na Baixada Fluminense atÃ© o ano de
+						2028, fazendo que elas sejam consumidas nÃ£o apenas em perÃ­odo
 						natalino.</p>
 				</div>
 
@@ -164,7 +152,7 @@
 						<li class="d-flex align-items-center gap-2"><lord-icon
 								src="https://cdn.lordicon.com/egiwmiit.json" trigger="loop"
 								delay="2000" style="width:20px;height:20px"> </lord-icon> <span>
-								Inovação</span></li>
+								InovaÃ§Ã£o</span></li>
 						<li class="d-flex align-items-center gap-2"><lord-icon
 								src="https://cdn.lordicon.com/egiwmiit.json" trigger="loop"
 								delay="2000" style="width:20px;height:20px"> </lord-icon> <span>
@@ -184,7 +172,7 @@
 	<section class="container-fluid corSecundaria py-3">
 
 		<div class="container">
-			<h1 class="text-center">Nossa visão</h1>
+			<h1 class="text-center">Nossa visÃ£o</h1>
 			<div
 				class="row row-col  align-items-center  flex-md-column flex-lg-row flex-column">
 				<div class="col text-center">
@@ -192,10 +180,10 @@
 						class="imagem-responsivo">
 				</div>
 				<div class="col">
-					<p class=" text">Buscamos ser referência em comercialização de
-						rabanadas na Baixada Fluminense até o ano de 2028, trabalhos com
+					<p class=" text">Buscamos ser referÃªncia em comercializaÃ§Ã£o de
+						rabanadas na Baixada Fluminense atÃ© o ano de 2028, trabalhos com
 						pensamento construtivo no intuito de nos torna-mos uma das cinco
-						empresas alimenticias lideres em distribuição de produtos ricos em
+						empresas alimenticias lideres em distribuiÃ§Ã£o de produtos ricos em
 						valores nutricionais.</p>
 				</div>
 			</div>

@@ -57,8 +57,10 @@ public class LoginAuthentication extends HttpServlet {
 		if (id ==1 ) {
 			session.removeAttribute("id");
 			response.sendRedirect("./Adm/Dashboard.jsp");
+
 			session.setAttribute("boasVindas", "Bem-vindo de volta");
 			session.setAttribute("id", id);
+
 		}
 		if(id>1) {
 			session.removeAttribute("id");

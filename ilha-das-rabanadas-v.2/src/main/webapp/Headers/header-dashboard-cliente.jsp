@@ -1,4 +1,27 @@
 
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Home</title>
+<style>
+@media (max-width:1440px){
+    width: 20px;
+    height: 20px;
+}
+
+</style>
+ 
+</head>
+
+
+
+
+<body>
+
+
 	<nav id="header" class="navbar navbar-expand-lg navbar-light bg-light">
 
 			<header

@@ -35,10 +35,10 @@
 	integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
 	crossorigin="anonymous">
 
-<link rel="stylesheet" href="../public/css/carrinho/carrinho.css">
-<link rel="stylesheet" href="../public/css/carrinho/carrinho-tablet.css">
-<link rel="stylesheet" href="../public/css/carrinho/carrinho-mobile.css">
+
+
 <link rel="stylesheet" href="../public/css/style.css">
+<link rel="stylesheet" href="../public/css/carrinho/carrinho.css">
 
 
 <style>
@@ -104,20 +104,21 @@ input[type=number] {
 	Integer id = (Integer) session.getAttribute("id");
 	Cliente cliente = new Cliente();
 
+	boolean teste = cliente.validarCliente(id);
+	if (!teste) {
+
+		response.sendRedirect("../Home/home.jsp");
+
+	}
+
 	SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yyyy");
 	String produtoId = request.getParameter("product");
 	Date dataAtual = new Date();
 	if (id == null) {
-		request.setAttribute("msg", "Ã‰ necessÃ¡rio estar logado para efetuar a compra!");
+		request.setAttribute("msg", "É necessário estar logado para efetuar a compra!");
 		response.sendRedirect("../Login/login.jsp");
 
 	} else {
-		boolean teste = cliente.validarCliente(id);
-		if (!teste || id == null) {
-
-			response.sendRedirect("../Home/home.jsp");
-
-		}
 		if (produtoId == null && id != null) {
 
 			cliente = ClienteDao.getElementByIdLogin(id);
@@ -155,27 +156,27 @@ input[type=number] {
 
 		<div class="text-center">
 			<img src="../public/imgs/pedidos/naoHaPedidos.webp" alt=""></img>
-			<h4>Seu carrinho está vazio!</h4>
+			<h4>Seu carrinho est� vazio!</h4>
 		</div>
 
 
-			<section class="container  flex-column p-4">
-				<form action="../PedidoInsertServlet" method="POST">
-					<input type="hidden" name="idCliente"
-						value="${cliente.getIdCliente()}"> <input type="hidden"
-						name="nomeProduto" value="${produto.getNomeProduto()}">
-					<div
-						class="card d-flex flex-sm-column flex-lg-row flex-nowrap flex-sm-wrap align-items-center mb-3">
+		<section class="container  flex-column p-4">
+			<form action="../pedido/insert" method="POST">
 
-						<div id="imgProduto">
-							<img src="${produto.getImagem()}" class="" alt="..."
-								height="100%">
+				<input type="hidden" name="idCliente"
+					value=" ${cliente.getIdCliente()}"> <input type="hidden"
+					name="idProduto" value="${produto.getIdProduto()}">
+
+				<div class="card   mb-3">
+					<div class="row  align-items-center g-0">
+						<div class="col">
+							<img src="" class="" alt="..." height="100%" width="90%">
 						</div>
-						<div class="">
+						<div class="col">
 							<div class="card-body">
-								<h5 class="card-title">${produto.getNomeProduto()}</h5>
+								<h5 class="card-title"></h5>
 								<p class="card-text">
-									Valor:<span class="fw-bold" id="preco">${produto.getPreco()}</span>
+									Valor:<span class="fw-bold" id="preco"></span>
 								<div class="mb-3">
 									<label class=" mb-2 form-label"> <label>Quantidade</label>
 										<input type="number" name="quantidadePedido" value="1"
@@ -186,13 +187,17 @@ input[type=number] {
 								<div>
 
 									<p>Total:</p>
-									<input type="text" value="R$5,00" id="valorPedido"
-										class="border-0" name="valorPedido" readonly>
+									<input type="text" value="" id="valorPedido" class="border-0"
+										name="valorPedido" readonly>
+
+										<p>Total:</p>
+										<input type="text" value="R$5,00" id="valorPedido"
+											class="border-0" name="valorPedido" readonly>
+									</div>
 
 								</div>
 							</div>
 						</div>
-
 					</div>
 
 
@@ -201,7 +206,7 @@ input[type=number] {
 							<div class="col">
 								<div class="card-body">
 									<div class="mb-3">
-										<label for="" class=" mb-2 form-label"> EndereÃ§o de
+										<label for="" class=" mb-2 form-label"> Endereço de
 											entrega: </label> <input type="text" name="endereco"
 											value="${cliente.getEndereco()}" id="endereco"
 											class="form-control" placeholder="" aria-describedby="helpId"
@@ -223,7 +228,7 @@ input[type=number] {
 											<input class="form-check-input" type="radio" value="cartao"
 												name="flexRadioDefault" id="flexRadioDefault1"> <label
 												class="form-check-label" for="flexRadioDefault1">
-												CartÃ£o ou pix </label>
+												Cartão ou pix </label>
 										</div>
 										<div class="form-check">
 											<input class="form-check-input" type="radio" value="dinheiro"
@@ -233,7 +238,7 @@ input[type=number] {
 										</div>
 									</div>
 									<div>
-										<p>PrecisarÃ¡ de troco? Para quanto?</p>
+										<p>Precisará de troco? Para quanto?</p>
 										<input type="text" value="" name="troco" class="form-control">
 									</div>
 								</div>
@@ -254,7 +259,7 @@ input[type=number] {
 		<c:if test="${produto.getIdProduto()== 0}">
 			<div class="text-center">
 				<img src="../public/imgs/pedidos/naoHaPedidos.webp" alt=""></img>
-				<h4>Seu carrinho estÃ¡ vazio!</h4>
+				<h4>Seu carrinho está vazio!</h4>
 			</div>
 		</c:if>
 

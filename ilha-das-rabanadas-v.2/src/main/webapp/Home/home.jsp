@@ -6,6 +6,7 @@
 
 <head>
 
+
 <title>Ilha das Rabanadas</title>
 
 
@@ -64,16 +65,16 @@
 			<h1 class="text-white">
 				<b> Ilha das Rabanadas</b>
 				<p>
-					<b>Primeira loja especializada na produÁ„o de rabanadas</b>
+					<b>Primeira loja especializada na produ√ß√£o de rabanadas</b>
 				</p>
 			</h1>
 		</div>
 	</section>
 	<section id="secao-cardapio">
-		<div class="container  p-3">
-			<h3 class="text-center">Card·pio</h3>
+		<div class="container  p-2">
+			<h3 class="text-center">Card√°pio</h3>
 			<a class="nav-link links" href="../Produto/Cardapio.jsp">
-				<p class="text-end">Visualizar card·pio completo</p>
+				<p class="text-end">Visualizar card√°pio completo</p>
 			</a>
 			<div
 				class="d-flex flex-wrap gap-2 flex-md-nowrap justify-content-evenly align-items-center ">
@@ -111,37 +112,46 @@
 
 		<div class="container p-3">
 			<h3 class="text-center my-3">
-				<b> ServiÁos Prestados</b>
+				<b> Servi√ßos Prestados</b>
 			</h3>
+
 
 			<div id="servico"
 				class="row  justify-content-center align-items-center  g-2">
+
 				<div class="col">
 					<ul class="d-flex flex-column gap-5">
+					
 						<li class="d-flex align-items-center gap-2 "><lord-icon
 								src="https://cdn.lordicon.com/egiwmiit.json" trigger="loop"
 								delay="2000" style="width:20px;height:20px"> </lord-icon> <span>
-								VENDA A VAREJO DE PRODUTOS (LOJA FÕSICA).</span></li>
+								VENDA A VAREJO DE PRODUTOS (LOJA F√çSICA).</span></li>
+								
 						<li class="d-flex align-items-center gap-2"><lord-icon
 								src="https://cdn.lordicon.com/egiwmiit.json" trigger="loop"
 								delay="2000" style="width:20px;height:20px"> </lord-icon> <span>
-								VENDA DE SERVI«OS PARA BUFFET</span></li>
+								VENDA DE SERVI√áOS PARA BUFFET</span></li>
+								
 						<li class="d-flex align-items-center gap-2"><lord-icon
 								src="https://cdn.lordicon.com/egiwmiit.json" trigger="loop"
 								delay="2000" style="width:20px;height:20px"> </lord-icon> <span>
-								SERVI«O DE DELIVERY PR”PRIO</span></li>
+								SERVI√áO DE DELIVERY PR√ìPRIO</span></li>
+								
 						<li class="d-flex align-items-center gap-2"><lord-icon
 								src="https://cdn.lordicon.com/egiwmiit.json" trigger="loop"
 								delay="2000" style="width:20px;height:20px"> </lord-icon> <span>
 								PRODUTOS PERSONALIZADOS</span></li>
+								
 						<li class="d-flex align-items-center gap-2"><lord-icon
 								src="https://cdn.lordicon.com/egiwmiit.json" trigger="loop"
 								delay="2000" style="width:20px;height:20px"> </lord-icon> <span>
 								ALIMENTOS FITNESS</span></li>
 					</ul>
 				</div>
+
 				<div id="divImagem" class="col d-flex justify-content-center">
 					<img width="100%" src="../public/imgs/img/servico-prestado.webp"
+
 						alt="">
 				</div>
 			</div>
@@ -157,13 +167,13 @@
 		<div id="sobre-banner"
 			class=" banner container-fluid d-flex flex-column align-items-center gap-5 justify-content-center">
 			<h1 class="text-white">
-				<b>Venha conhecer a nossa histÛria!</b>
+				<b>Venha conhecer a nossa hist√≥ria!</b>
 
 
 			</h1>
 			<a href="../Sobre/Sobre.jsp"><button id="btn-sobre"
 					class=" rounded-pill  btn btn-success body">
-					<b>SOBRE N”S</b>
+					<b>SOBRE N√ìS</b>
 				</button></a>
 		</div>
 	</section>
