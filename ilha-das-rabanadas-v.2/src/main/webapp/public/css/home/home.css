@@ -1,4 +1,4 @@
-section {
+.section-back {
 	height: 525px;
 }
 
@@ -15,8 +15,13 @@ section {
 }
 
 /* boas vindas */
+#boas-vindas-banner {
+	background-image: url("../../imgs/img/banner.webp") !important;
+}
+
 h1 {
-	text-color: black; text-align : center;
+	text-color: black;
+	text-align: center;
 	font-weight: bold;
 	text-align: center;
 }
@@ -34,6 +39,7 @@ h1>p {
 /* cardapio */
 #secao-cardapio {
 	background-color: #FFBD59;
+	max-height: max-content;
 }
 
 /* fim cardapio */
@@ -42,7 +48,9 @@ h1>p {
 }
 
 #secao-servico {
-	background-color: rgba(217, 180, 72, 0.3);}
+	background-color: rgba(217, 180, 72, 0.3);
+	max-height: max-content;
+}
 
 /* sobre */
 #sobre-banner {
@@ -55,15 +63,8 @@ h1>p {
 }
 
 /* fim sobre */
-#card-cardapio {
-	height: 290px;
-	background-image:
-		url("http://localhost/projetoIntegrador/public/imgs/img/rabanada-doce.webp");
-	background-repeat: no-repeat;
-	background-size: cover;
-	background-position: center;
-	width: 15em;
-	height: 20em;
+.card{
+	width: 20%;
 }
 
 .card-body {
@@ -78,11 +79,8 @@ video {
 	min-width: 100%;
 	min-height: 100%;
 	z-index: -1000;
+
 }
-@media (max-width: 1440px){
-	.col-4{
-	 width:10rem;
-	 padding:0%
-	}
-	
+
 }
+

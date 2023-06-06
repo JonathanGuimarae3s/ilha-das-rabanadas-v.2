@@ -1,5 +1,8 @@
 package com.ilhaDasRabanadas.bean;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 public class Cliente {
 	protected int idCliente;
 	public String nomeCliente;
@@ -108,8 +111,10 @@ public class Cliente {
 		} else {
 			result = true;
 			return result;
-			
+
 		}
 	}
+
+	
 
 }

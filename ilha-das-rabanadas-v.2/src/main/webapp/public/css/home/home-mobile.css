@@ -1,0 +1,21 @@
+@charset "ISO-8859-1";
+
+@media screen and (max-width:400px) {
+	.card {
+		width: 40%;
+	}
+	#secao-servico {
+		background-color: rgba(217, 180, 72, 0.3);
+		max-height: max-content;
+	}
+	#secao-cardapio {
+		background-color: #FFBD59;
+		max-height: max-content;
+	}
+	#divImagem>img {
+		display: none;
+	}
+	#servico {
+		flex-direction: column;
+	}
+}

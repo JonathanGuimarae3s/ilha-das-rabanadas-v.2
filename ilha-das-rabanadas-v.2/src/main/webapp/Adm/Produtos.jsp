@@ -18,7 +18,13 @@
 	crossorigin="anonymous">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+	
 <link rel="stylesheet" href="../public/css/produto/cardapio.css">
+
+<link rel="stylesheet" href="../public/css/produto/cardapio-tablet.css">
+<link rel="stylesheet" href="../public/css/produto/cardapio-mobile.css">
+
+
 <link rel="stylesheet" href="../public/css/style.css">
 <link rel="icon" href="../public/imgs/img/palmeira.png">
 
@@ -26,7 +32,7 @@
 <meta charset="ISO-8859-1">
 </head>
 <body>
-<%
+	<%
 	Integer id = (Integer) session.getAttribute("id");
 
 	Cliente cliente = new Cliente();
@@ -80,7 +86,7 @@
 	List<Produto> list = ProdutoDao.getAllProducts();
 	request.setAttribute("list", list);
 	%>
-	<jsp:include page="../Headers/header-dashboards-adm-acessado.jsp"></jsp:include>
+<jsp:include page="../Headers/header-dashboard-cliente.jsp"></jsp:include>
 	<main>
 		<h1 class="text-center">Seus produtos</h1>
 
@@ -89,7 +95,9 @@
 					novo produto</span></a>
 			<div>
 				<h4 class="text-start">Rabanadas Doces</h4>
-				<div class=" d-flex flex-row  align-items-center  flex-wrap gap-5 ">
+				<div
+					class="d-flex flex-row justify-content-center justify-content-md-between justify-content-lg-start  flex-wrap"
+					id="back-produto">
 					<c:forEach items="${list}" var="produto">
 						<c:if test="${produto.getCategoria()=='Doce'}">
 							<div class="card">
@@ -151,9 +159,11 @@
 			</div>
 			<div>
 				<h4 class="text-start">Rabanadas Salgadas</h4>
-				<div class="d-flex flex-row  align-items-center  flex-wrap gap-5 ">
+				<div
+					class=" d-flex flex-row  justify-content-center justify-content-lg-start justify-content-md-between  flex-wrap "
+					id="back-produto">
 					<c:forEach items="${list}" var="produto">
-						<c:if test="${produto.getCategoria()=='Vegano'}">
+						<c:if test="${produto.getCategoria()=='Salgado'}">
 							<div class="card">
 								<div class="card-img">
 									<img class="card-img-top " src="${produto.getImagem()}"
@@ -214,7 +224,9 @@
 
 			<div>
 				<h4 class="text-start">Rabanadas Veganas</h4>
-				<div class="d-flex flex-row  align-items-center  flex-wrap gap-5 ">
+				<div
+					class=" d-flex flex-row  justify-content-centerjustify-content-lg-start justify-content-md-between  flex-wrap "
+					id="back-produto">
 					<c:forEach items="${list}" var="produto">
 						<c:if test="${produto.getCategoria()=='Vegano'}">
 							<div class="card">

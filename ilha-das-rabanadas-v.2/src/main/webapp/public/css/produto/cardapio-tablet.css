@@ -1,0 +1,10 @@
+@charset "ISO-8859-1";
+
+@media only screen and (max-width: 835px) {
+	#back-produto {
+		gap: 1px;
+	}
+	.card {
+		width: 30%;
+	}
+}

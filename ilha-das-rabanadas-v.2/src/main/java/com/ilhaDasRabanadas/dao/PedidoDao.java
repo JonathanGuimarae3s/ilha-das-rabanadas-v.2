@@ -34,8 +34,8 @@ public class PedidoDao extends Conexao {
 		}
 	}
 
-	public static Pedido getAllOrderedByIdCliente(int idCliente) {
-		Pedido pedido = new Pedido();
+	public static List<Pedido> getAllOrderedByIdCliente(int idCliente) {
+		List<Pedido> list = new ArrayList<Pedido>();
 		String stringIdCliente = Integer.toString(idCliente);
 		try {
 			String sql = "SELECT * FROM `pedido` WHERE idCliente=?;";
@@ -44,6 +44,7 @@ public class PedidoDao extends Conexao {
 			rs = stmt.executeQuery();
 
 			while (rs.next()) {
+				Pedido pedido = new Pedido();
 				pedido.setIdPedido(Integer.parseInt(rs.getString("idPedido")));
 				pedido.setDataEntrega(rs.getString("dataEntrega"));
 				pedido.setEndereco(rs.getString("endereco"));
@@ -53,7 +54,7 @@ public class PedidoDao extends Conexao {
 				pedido.setNomeProduto(rs.getString("nomeProduto"));
 				pedido.setFormaPagamento(rs.getString("formaPagamento"));
 				pedido.setTroco(rs.getString("troco"));
-
+				list.add(pedido);
 			}
 
 		} catch (Exception e) {
@@ -62,7 +63,7 @@ public class PedidoDao extends Conexao {
 			System.out.println("aqui dao");
 
 		}
-		return pedido;
+		return list;
 	}
 
 	public static List<Pedido> getAllOrdered() {

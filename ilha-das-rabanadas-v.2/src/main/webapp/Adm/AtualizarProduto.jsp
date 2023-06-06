@@ -21,8 +21,9 @@
 
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
-
 <link rel="stylesheet" href="../public/css/form/forms.css">
+<link rel="stylesheet" href="../public/css/form/forms-tablet.css">
+<link rel="stylesheet" href="../public/css/form/forms-mobile.css">
 <link rel="stylesheet" href="../public/css/style.css">
 <link rel="icon" href="../public/imgs/img/palmeira.png">
 
@@ -50,7 +51,7 @@
 	%>
 	<div class="container-fluid " id="header">
 		<header
-			class="container d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+			class="container d-flex flex-nowrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
 
 
 			<a href="./Produtos.jsp"
