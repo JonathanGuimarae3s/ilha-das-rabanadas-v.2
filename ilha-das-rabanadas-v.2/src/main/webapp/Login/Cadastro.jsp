@@ -22,6 +22,8 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 
 <link rel="stylesheet" href="../public/css/form/forms.css">
+<link rel="stylesheet" href="../public/css/form/forms-tablet.css">
+<link rel="stylesheet" href="../public/css/form/forms-mobile.css">
 
 <link rel="stylesheet" href="../public/css/style.css">
 
@@ -34,7 +36,7 @@
 
 	<div class="container-fluid " id="header">
 		<header
-			class="container d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+			class="container d-flex flex-nowwrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
 
 
 			<a href="./login.jsp"
@@ -55,8 +57,9 @@
 	<div
 		class="container d-flex justify-content-center align-items-center my-5 flex-column gap-3">
 		<h1 class="text-center">Cadastro</h1>
-		<h5 class="text-danger">Obs: só fazemos entregas em Nova Iguaçu!</h5>
+	
 		<form action="../ClienteInsertServlet" method="POST" class="rounded">
+			<h5 class="text-danger">Obs: só fazemos entregas em Nova Iguaçu!</h5>
 			<div class="mb-4 row">
 
 

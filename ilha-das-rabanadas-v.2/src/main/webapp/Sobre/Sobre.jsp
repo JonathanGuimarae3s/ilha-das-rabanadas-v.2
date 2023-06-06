@@ -20,8 +20,11 @@
 	integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
 	crossorigin="anonymous">
 <link rel="stylesheet" href="../public/css/sobre/sobre.css">
+
+<link rel="stylesheet" href="../public/css/sobre-tablet.css">
+<link rel="stylesheet" href="../public/css/sobre-mobile.css">
 <link rel="stylesheet" href="../public/css/style.css">
-<link rel="stylesheet" href="../public/css/table-sobre.css">
+
 <link rel="icon" href="../public/imgs/img/palmeira.png">
 
 <link
@@ -35,36 +38,13 @@
 
 
 
-<style>
-.text,span {
-	text-align: justify;
-	font-size: 20px;
-}
-
-.corPrimaria {
-	background-color: #FFD9A1;
-}
-
-.corSecundaria {
-	background-color: #FFBD59;
-}
-
-h1{
-
-font-weight:bold;
-}
-
-
-
-
-</style>
 
 </head>
 
 <body>
 
 
-		<%
+	<%
 	Integer id = (Integer) session.getAttribute("id");
 
 	if (id == null || id < 1) {
@@ -96,10 +76,9 @@ font-weight:bold;
 
 
 
-
 			<div
-				class="row row-cols-2  align-items-center  flex-md-column flex-lg-row flex-column">
-				<div class="col">
+				class="row row-col  align-items-center  flex-md-column flex-lg-row flex-column">
+				<div class="col text-center">
 					<img id="img" src="../public/imgs/ilha/colaboradores.webp" alt=""
 						width="70%" class="img-fluid rounded">
 				</div>
@@ -138,8 +117,8 @@ font-weight:bold;
 		<div class="container">
 			<h1 class="text-center">Nossa missão</h1>
 			<div
-				class="row row-cols-2  align-items-center  flex-md-column flex-lg-row flex-column">
-			<div class="col">
+				class="row row-col  align-items-center  flex-md-column flex-lg-row flex-column">
+				<div class="col text-center">
 					<img id="img" src="../public/imgs/3.webp" alt="" width="70%"
 						class="img-fluid">
 				</div>
@@ -156,7 +135,7 @@ font-weight:bold;
 						2028, fazendo que elas sejam consumidas não apenas em período
 						natalino.</p>
 				</div>
-				
+
 			</div>
 		</div>
 
@@ -166,12 +145,13 @@ font-weight:bold;
 	<section class="container-fluid corPrimaria py-3">
 		<div class="container">
 			<h1 class="text-center">Nossos valores</h1>
-<div
-				class="row row-cols-2  align-items-center  flex-md-column flex-lg-row flex-column">				<div class="col-6">
+			<div
+				class="row row-col row-cols-md-2  align-items-center  flex-md-column flex-lg-row flex-column">
+				<div class="col text-center">
 					<img id="img" src="../public/imgs/4.webp" alt="" width="70%"
 						class="img-fluid">
 				</div>
-				<div class="col">
+				<div class="col align-center">
 					<ul class="d-flex flex-column gap-5">
 						<li class="d-flex align-items-center gap-2 "><lord-icon
 								src="https://cdn.lordicon.com/egiwmiit.json" trigger="loop"
@@ -205,9 +185,9 @@ font-weight:bold;
 
 		<div class="container">
 			<h1 class="text-center">Nossa visão</h1>
-<div
-				class="row row-cols-2  align-items-center  flex-md-column flex-lg-row flex-column">
-					<div class="col">
+			<div
+				class="row row-col  align-items-center  flex-md-column flex-lg-row flex-column">
+				<div class="col text-center">
 					<img id="img" src="../public/imgs/5.webp" alt="" width="70%"
 						class="imagem-responsivo">
 				</div>
@@ -218,7 +198,6 @@ font-weight:bold;
 						empresas alimenticias lideres em distribuição de produtos ricos em
 						valores nutricionais.</p>
 				</div>
-			
 			</div>
 		</div>
 	</section>
@@ -241,7 +220,7 @@ font-weight:bold;
 		crossorigin="anonymous">
 		
 	</script>
-	
+
 </body>
 
 </html>

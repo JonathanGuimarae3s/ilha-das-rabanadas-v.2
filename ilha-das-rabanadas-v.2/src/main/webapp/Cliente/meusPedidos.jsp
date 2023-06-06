@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ page import="com.ilhaDasRabanadas.bean.*,com.ilhaDasRabanadas.dao.*"%>
+<%@page import="java.util.List"%>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%
@@ -78,21 +79,25 @@ if (!teste) {
 	//---intanciando o obj cliente
 	cliente = ClienteDao.getElementByIdLogin(id);
 	int clienteId = cliente.getIdCliente();
-	//---instacindo o obj pedido
-	Pedido pedido = PedidoDao.getAllOrderedByIdCliente(clienteId);
-	request.setAttribute("pedido", pedido);
+
+	String cidade = cliente.getCidade();
+	List<Pedido> list = PedidoDao.getAllOrderedByIdCliente(clienteId);
+	request.setAttribute("list", list);
+
+	request.setAttribute("cidade", cidade);
 	%>
 	<jsp:include page="../Headers/header-dashboard-cliente.jsp"></jsp:include>
-	<c:if test="${pedido.getIdPedido()== 0}">
-		<div class="text-center">
-			<img src="../public/imgs/pedidos/naoHaPedidos.webp" alt=""></img>
-			<h4>Você ainda não fez um pedido!</h4>
-		</div>
-	</c:if>
-	<c:if test="${pedido.getIdPedido() > 0}">
-		<div class="table-responsive">
-			<div class="container">
+
+	
+	<div class="container">
+	
+			<div class="table-responsive ">
 				<table class="table table-hover">
+					<c:if test="${cidade !='Nova Iguaçu'}">
+						<h4 class="text-danger my-3">Você não está elegivel para o
+							serviço de delivery!!</h4>
+					</c:if>
+
 
 					<thead>
 						<tr>
@@ -104,66 +109,41 @@ if (!teste) {
 							<th scope="col">Quantidade do Pedido</th>
 							<th scope="col">Valor</th>
 							<th scope="col">Forma de Pagamento</th>
-							<th scope="col">troco</th>
-							<th scope="col" colspan="2">Açoes</th>
+							<th scope="col">Troco</th>
+							<th scope="col" colspan="2">Ações</th>
 						</tr>
 					</thead>
 					<tbody>
 
 
 
-						<tr class=''>
-							<td scope='row'>${pedido.getIdPedido()}</td>
-							<td>${pedido.getNomeProduto()}</td>
-							<td>${pedido.getDataEntrega()}</td>
-							<td>${pedido.getHora()}</td>
-							<td>${pedido.getEndereco()}</td>
-							<td>${pedido.getQuantidadePedido()}</td>
-							<td>${pedido.getValorPedido()}</td>
 
-							<td>${pedido.getFormaPagamento()}</td>
-							<td>${pedido.getTroco()}</td>
+						<c:forEach items="${list}" var="pedido">
 
-							<td>
-								<button type='button' class='btn btn-outline-success '
-									data-bs-toggle='modal' data-bs-target='#edit$idPedido'>
-									<i class='bi bi-pencil'></i> <span>Editar Pedido</span>
-								</button>
-								<button type='button' class='btn btn-outline-danger'
-									data-bs-toggle='modal' data-bs-target='#cancel$idPedido'>
-									<i class='bi    bi-trash'></i> <span>Cancelar</span>
-								</button>
-							</td>
-						</tr>
-						<div class='modal fade' id='cancel$idPedido' tabindex='-1'
-							role='dialog' aria-labelledby='modalTitleId' aria-hidden='true'>
-							<div
-								class='modal-dialog modal-dialog-scrollable modal-dialog-centered modal'
-								role='document'>
-								<div class='modal-content'>
-									<div class='modal-header'>
-										<h5 class='modal-title' id='modalTitleId'>Jutifique seu
-											cancelamento!</h5>
-										<button type='button' class='btn-close'
-											data-bs-dismiss='modal' aria-label='Close'></button>
-									</div>
-									<div class='modal-body'>
-										<h6>Codigo do Pedido</h6>
-										<input type='text' name='justificativa' id='codigoPedido'
-											value='$idPedido' required class='form-control'>
-										<h6>Sua justificativa!</h6>
-										<input type='text' name='justificativa' id='justify' required
-											class='form-control'>
-									</div>
-									<div class='modal-footer'>
-										<button type='button' class='btn btn-secondary'
-											data-bs-dismiss='modal'>cancelar</button>
-										<button id='justifyCancel' type='button'
-											class='btn btn-primary'>Enviar</button>
-									</div>
-								</div>
-							</div>
-						</div>
+							<tr class=''>
+								<td scope='row'>${pedido.getIdPedido()}</td>
+								<td>${pedido.getNomeProduto()}</td>
+								<td>${pedido.getDataFormatada()}</td>
+								<td>${pedido.getHora()}</td>
+								<td>${pedido.getEndereco()}</td>
+								<td>${pedido.getQuantidadePedido()}</td>
+								<td>${pedido.getValorPedido()}</td>
+
+								<td>${pedido.getFormaPagamento()}</td>
+								<td>${pedido.getTroco()}</td>
+
+								<td>
+									<button type='button' class='btn btn-outline-success '
+										data-bs-toggle='modal' data-bs-target='#edit$idPedido'>
+										<i class='bi bi-pencil'></i> <span>Editar Pedido</span>
+									</button>
+									<button type='button' class='btn btn-outline-danger'
+										data-bs-toggle='modal' data-bs-target='#cancel$idPedido'>
+										<i class='bi    bi-trash'></i> <span>Cancelar</span>
+									</button>
+								</td>
+							</tr>
+						</c:forEach>
 						<div class='modal fade' id='edit$idPedido' tabindex='-1'
 							role='dialog' aria-labelledby='modalTitleId' aria-hidden='true'>
 							<div
@@ -197,11 +177,10 @@ if (!teste) {
 					</tbody>
 				</table>
 			</div>
-	</c:if>
-
-
-
+	
 	</div>
+
+
 	<script>
 		const myModalCancel = new bootstrap.Modal(document
 				.getElementsById('cancel$idPedido'), options);

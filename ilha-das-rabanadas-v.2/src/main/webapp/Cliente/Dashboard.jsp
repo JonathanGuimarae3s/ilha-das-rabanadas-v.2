@@ -88,7 +88,7 @@ if (!teste) {
 	<main>
 		<h1 class="text-center my-4">Área do Cliente ${msg}</h1>
 		<div class="container">
-			<div id="container-cards" class=" d-flex  justify-content-evenly">
+			<div id="container-cards" class=" d-flex flex-wrap justify-content-evenly">
 				<div class="card">
 					<div class="card-body ">
 						<div class="icon text-center">

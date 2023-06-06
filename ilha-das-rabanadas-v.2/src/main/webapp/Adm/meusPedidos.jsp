@@ -3,7 +3,7 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ page import="com.ilhaDasRabanadas.bean.*,com.ilhaDasRabanadas.dao.*"%>
 
-	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,7 +25,8 @@
 <link rel="icon" href="../public/imgs/img/palmeira.png">
 <href ="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 </head>
-<body><%
+<body>
+	<%
 	Integer id = (Integer) session.getAttribute("id");
 
 	Cliente cliente = new Cliente();
@@ -37,10 +38,8 @@
 	}
 	%>
 	<%
-	
-
-//PEGANDO TIODOS OS PEDIDOS
-List<Pedido> list = PedidoDao.getAllOrdered();
+	//PEGANDO TIODOS OS PEDIDOS
+	List<Pedido> list = PedidoDao.getAllOrdered();
 	request.setAttribute("list", list);
 	%>
 	<jsp:include page="../Headers/header-dashboard-cliente.jsp"></jsp:include>
@@ -65,32 +64,32 @@ List<Pedido> list = PedidoDao.getAllOrdered();
 				</thead>
 				<tbody>
 
-<c:forEach items="${list}" var="pedido">
+					<c:forEach items="${list}" var="pedido">
 
-					<tr class=''>
-						<td scope='row'>${pedido.getIdPedido()}</td>
-						<td>${pedido.getNomeProduto()}</td>
-						<td>${pedido.getDataEntrega()}</td>
-						<td>${pedido.getHora()}</td>
-						<td>${pedido.getEndereco()}</td>
-						<td>${pedido.getQuantidadePedido()}</td>
-						<td>${pedido.getValorPedido()}</td>
+						<tr class=''>
+							<td scope='row'>${pedido.getIdPedido()}</td>
+							<td>${pedido.getNomeProduto()}</td>
+							<td>${pedido.getDataFormatada()}</td>
+							<td>${pedido.getHora()}</td>
+							<td>${pedido.getEndereco()}</td>
+							<td>${pedido.getQuantidadePedido()}</td>
+							<td>${pedido.getValorPedido()}</td>
 
-						<td>${pedido.getFormaPagamento()}</td>
-						<td>${pedido.getTroco()}</td>
+							<td>${pedido.getFormaPagamento()}</td>
+							<td>${pedido.getTroco()}</td>
 
-						<td>
-							<button type='button' class='btn btn-outline-success '
-								data-bs-toggle='modal' data-bs-target='#edit$idPedido'>
-								<i class='bi bi-pencil'></i> <span>Editar Pedido</span>
-							</button>
-							<button type='button' class='btn btn-outline-danger'
-								data-bs-toggle='modal' data-bs-target='#cancel$idPedido'>
-								<i class='bi    bi-trash'></i> <span>Cancelar</span>
-							</button>
-						</td>
-					</tr>
-</c:forEach>
+							<td>
+								<button type='button' class='btn btn-outline-success '
+									data-bs-toggle='modal' data-bs-target='#edit$idPedido'>
+									<i class='bi bi-pencil'></i> <span>Editar Pedido</span>
+								</button>
+								<button type='button' class='btn btn-outline-danger'
+									data-bs-toggle='modal' data-bs-target='#cancel$idPedido'>
+									<i class='bi    bi-trash'></i> <span>Cancelar</span>
+								</button>
+							</td>
+						</tr>
+					</c:forEach>
 					<div class='modal fade' id='cancel$idPedido' tabindex='-1'
 						role='dialog' aria-labelledby='modalTitleId' aria-hidden='true'>
 						<div

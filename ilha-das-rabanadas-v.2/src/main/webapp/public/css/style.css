@@ -49,6 +49,8 @@ main {
 
 /* estilo para os cards */
 .card {
+	
+
 	background-color: var(--card-background);
 	box-shadow: 3px 4px 6px #000000b0;
 	margin-bottom: 20px;

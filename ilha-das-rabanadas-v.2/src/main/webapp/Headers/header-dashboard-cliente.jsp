@@ -2,7 +2,7 @@
 	<nav id="header" class="navbar navbar-expand-lg navbar-light bg-light">
 
 			<header
-				class="container d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4">
+				class="container d-flex  flex-nowrap align-items-center justify-content-center justify-content-md-between py-3 mb-4">
 
 
 				<a href="./Dashboard.jsp "
@@ -14,9 +14,15 @@
 				</a>
 
 				<div class="col-md-3 text-center m-auto">
-					<img width="80%" src="../public/imgs/img/logo-dashboards.webp"
+					<img width=50%" src="../public/imgs/img/logo-dashboards.webp"
 						alt="">
 				</div>
+				<div>
+				<a href="../Login/Logout.jsp"><lord-icon
+						src="https://cdn.lordicon.com/moscwhoj.json" trigger="hover"
+						colors="primary:#000,secondary:#000"
+						style="width:60px;height:60px"> </lord-icon> </a>
+			</div>
 			</header>
 	
 	</nav>

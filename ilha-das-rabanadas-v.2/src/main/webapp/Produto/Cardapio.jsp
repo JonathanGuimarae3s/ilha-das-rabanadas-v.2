@@ -19,9 +19,12 @@
 	crossorigin="anonymous">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
-<link rel="stylesheet" href="../public/css/produto/cardapio.css">
+
 <script src="https://cdn.lordicon.com/ritcuqlt.js"></script>
 <link rel="stylesheet" href="../public/css/style.css">
+<link rel="stylesheet" href="../public/css/produto/cardapio.css">
+<link rel="stylesheet" href="../public/css/produto/cardapio-tablet.css">
+<link rel="stylesheet" href="../public/css/produto/cardapio-mobile.css">
 </head>
 
 <body>
@@ -59,7 +62,9 @@
 		<div class="container">
 			<div>
 				<h4 class="text-start">Rabanadas Doces</h4>
-				<div class="d-flex flex-row  align-items-center  flex-wrap gap-5 ">
+				<div
+					class=" d-flex flex-row  justify-content-center justify-content-lg-start justify-content-md-between  flex-wrap "
+					id="back-produto">
 					<c:forEach items="${list}" var="produto">
 						<c:if test="${produto.getCategoria()=='Doce'}">
 							<div class="card">
@@ -86,7 +91,9 @@
 			</div>
 			<div>
 				<h4 class="text-start">Rabanadas Salgadas</h4>
-				<div class="d-flex flex-row  align-items-center  flex-wrap gap-5 ">
+				<div
+					class=" d-flex flex-row  justify-content-center justify-content-lg-start justify-content-md-between  flex-wrap "
+					id="back-produto">
 					<c:forEach items="${list}" var="produto">
 						<c:if test="${produto.getCategoria()=='Salgado'}">
 							<div class="card">
@@ -113,7 +120,9 @@
 			</div>
 			<div>
 				<h4 class="text-start">Rabanadas Veganas</h4>
-				<div class="d-flex flex-row  align-items-center  flex-wrap gap-5 ">
+				<div
+					class=" d-flex flex-row  justify-content-center justify-content-lg-start justify-content-md-between  flex-wrap "
+					id="back-produto">
 					<c:forEach items="${list}" var="produto">
 						<c:if test="${produto.getCategoria()=='Vegana'}">
 							<div class="card">

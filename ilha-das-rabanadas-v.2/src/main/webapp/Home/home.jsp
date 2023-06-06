@@ -21,8 +21,11 @@
 
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
-<link rel="stylesheet" href="../public/css/home/home.css">
+
 <link rel="stylesheet" href="../public/css/style.css">
+<link rel="stylesheet" href="../public/css/home/home.css">
+<link rel="stylesheet" href="../public/css/home/home-tablet.css">
+<link rel="stylesheet" href="../public/css/home/home-mobile.css">
 <link rel="icon" href="../public/imgs/img/palmeira.png">
 
 
@@ -55,13 +58,9 @@
 
 
 
-	<section>
+	<section class="section-back">
 		<div id="boas-vindas-banner"
 			class=" banner container-fluid d-flex align-items-center justify-content-center body">
-
-			<video autoplay loop muted plays-inline>
-				<source src="../public/videos/rabanada-view.mp4">
-			</video>
 			<h1 class="text-white">
 				<b> Ilha das Rabanadas</b>
 				<p>
@@ -76,34 +75,34 @@
 			<a class="nav-link links" href="../Produto/Cardapio.jsp">
 				<p class="text-end">Visualizar cardápio completo</p>
 			</a>
-			<div class="row justify-content-evenly align-items-center ">
-				<div class="col-4">
-					<div class="card">
-						<img src="../public/imgs/img/rabanada/rabanada-vegana.webp" alt=""
-							class="fluid">
-						<div class="card-body" st>
-							<h5 class="card-title">Rabanadas Veganas</h5>
-						</div>
+			<div
+				class="d-flex flex-wrap gap-2 flex-md-nowrap justify-content-evenly align-items-center ">
+
+				<div class="card">
+					<img src="../public/imgs/img/rabanada/rabanada-vegana.webp" alt=""
+						class="fluid">
+					<div class="card-body" st>
+						<h5 class="card-title">Rabanadas Veganas</h5>
 					</div>
 				</div>
-				<div class="col-4">
-					<div class="card">
-						<img src="../public/imgs/img/rabanada/rabanada-doce.webp" alt=""
-							class="img-fluid w-100">
-						<div class="card-body">
-							<h5 class="card-title">Rabanadas Doces</h5>
-						</div>
+
+				<div class="card">
+					<img src="../public/imgs/img/rabanada/rabanada-doce.webp" alt=""
+						class="img-fluid w-100">
+					<div class="card-body">
+						<h5 class="card-title">Rabanadas Doces</h5>
 					</div>
 				</div>
-				<div class="col-4">
-					<div class="card">
-						<img src="../public/imgs/img/rabanada/rabanada-salgada.webp"
-							alt="" class="fluid">
-						<div class="card-body">
-							<h5 class="card-title">Rabanadas Salgadas</h5>
-						</div>
+
+
+				<div class="card">
+					<img src="../public/imgs/img/rabanada/rabanada-salgada.webp" alt=""
+						class="fluid">
+					<div class="card-body">
+						<h5 class="card-title">Rabanadas Salgadas</h5>
 					</div>
 				</div>
+
 			</div>
 	</section>
 	<section id="secao-servico"
@@ -115,7 +114,8 @@
 				<b> Serviços Prestados</b>
 			</h3>
 
-			<div class="row justify-content-center align-items-center g-2">
+			<div id="servico"
+				class="row  justify-content-center align-items-center  g-2">
 				<div class="col">
 					<ul class="d-flex flex-column gap-5">
 						<li class="d-flex align-items-center gap-2 "><lord-icon
@@ -140,8 +140,8 @@
 								ALIMENTOS FITNESS</span></li>
 					</ul>
 				</div>
-				<div class="col d-flex justify-content-center">
-					<img width="70%" src="../public/imgs/img/servico-prestado.webp"
+				<div id="divImagem" class="col d-flex justify-content-center">
+					<img width="100%" src="../public/imgs/img/servico-prestado.webp"
 						alt="">
 				</div>
 			</div>
@@ -153,7 +153,7 @@
 
 
 	</section>
-	<section>
+	<section class="section-back">
 		<div id="sobre-banner"
 			class=" banner container-fluid d-flex flex-column align-items-center gap-5 justify-content-center">
 			<h1 class="text-white">

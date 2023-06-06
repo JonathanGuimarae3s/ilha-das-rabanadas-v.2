@@ -30,8 +30,11 @@
 	integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
 	crossorigin="anonymous">
 
-<link rel="stylesheet" href="../public/css/style.css">
 <link rel="stylesheet" href="../public/css/carrinho/carrinho.css">
+<link rel="stylesheet" href="../public/css/carrinho/carrinho-tablet.css">
+<link rel="stylesheet" href="../public/css/carrinho/carrinho-mobile.css">
+<link rel="stylesheet" href="../public/css/style.css">
+
 <style>
 </style>
 </head>
@@ -42,13 +45,6 @@
 	Integer id = (Integer) session.getAttribute("id");
 	Cliente cliente = new Cliente();
 
-	boolean teste = cliente.validarCliente(id);
-	if (!teste) {
-
-		response.sendRedirect("../Home/home.jsp");
-
-	}
-
 	SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yyyy");
 	String produtoId = request.getParameter("product");
 	Date dataAtual = new Date();
@@ -57,6 +53,12 @@
 		response.sendRedirect("../Login/login.jsp");
 
 	} else {
+		boolean teste = cliente.validarCliente(id);
+		if (!teste || id == null) {
+
+			response.sendRedirect("../Home/home.jsp");
+
+		}
 		if (produtoId == null && id != null) {
 
 			cliente = ClienteDao.getElementByIdLogin(id);
@@ -96,33 +98,34 @@
 					<input type="hidden" name="idCliente"
 						value="${cliente.getIdCliente()}"> <input type="hidden"
 						name="nomeProduto" value="${produto.getNomeProduto()}">
-					<div class="card   mb-3">
-						<div class="row  align-items-center g-0">
-							<div class="col">
-								<img src="${produto.getImagem()}" class="" alt="..."
-									height="100%" width="90%">
-							</div>
-							<div class="col">
-								<div class="card-body">
-									<h5 class="card-title">${produto.getNomeProduto()}</h5>
-									<p class="card-text">
-										Valor:<span class="fw-bold" id="preco">${produto.getPreco()}</span>
-									<div class="mb-3">
-										<label class=" mb-2 form-label"> <label>Quantidade</label>
-											<input type="number" name="quantidadePedido" value="1"
-											id="quantidadePedido" min="1" class="form-control"
-											placeholder="" aria-describedby="helpId">
-										</label>
-									</div>
-									<div>
+					<div
+						class="card d-flex flex-sm-column flex-lg-row flex-nowrap flex-sm-wrap align-items-center mb-3">
 
-										<p>Total:</p>
-										<input type="text" value="R$5,00" id="valorPedido"
-											class="border-0" name="valorPedido" readonly>
-									</div>
+						<div id="imgProduto">
+							<img src="${produto.getImagem()}" class="" alt="..."
+								height="100%">
+						</div>
+						<div class="">
+							<div class="card-body">
+								<h5 class="card-title">${produto.getNomeProduto()}</h5>
+								<p class="card-text">
+									Valor:<span class="fw-bold" id="preco">${produto.getPreco()}</span>
+								<div class="mb-3">
+									<label class=" mb-2 form-label"> <label>Quantidade</label>
+										<input type="number" name="quantidadePedido" value="1"
+										id="quantidadePedido" min="1" class="form-control"
+										placeholder="" aria-describedby="helpId">
+									</label>
+								</div>
+								<div>
+
+									<p>Total:</p>
+									<input type="text" value="R$5,00" id="valorPedido"
+										class="border-0" name="valorPedido" readonly>
 								</div>
 							</div>
 						</div>
+
 					</div>
 					<div class="card   mb-3">
 						<div class="row g-0">

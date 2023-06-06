@@ -1,0 +1,8 @@
+@charset "ISO-8859-1";
+
+@media only screen and (max-width: 835px) {
+
+	.card{
+	width: 25%;
+}
+}

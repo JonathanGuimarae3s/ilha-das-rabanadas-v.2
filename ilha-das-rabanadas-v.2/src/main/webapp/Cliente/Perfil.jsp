@@ -21,8 +21,11 @@
 	crossorigin="anonymous">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
-<link rel="stylesheet" href="../public/css/form/forms.css">
+
 <link rel="stylesheet" href="../public/css/style.css">
+<link rel="stylesheet" href="../public/css/form/forms.css">
+<link rel="stylesheet" href="../public/css/form/forms-tablet.css">
+<link rel="stylesheet" href="../public/css/form/forms-mobile.css">
 <link rel="icon" href="../public/imgs/img/palmeira.png">
 
 </head>

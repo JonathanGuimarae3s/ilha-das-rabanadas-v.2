@@ -3,7 +3,7 @@ package com.ilhaDasRabanadas.dao;
 import java.util.ArrayList;
 import java.util.List;
 import com.ilhaDasRabanadas.bean.Produto;
-import com.mysql.cj.x.protobuf.MysqlxPrepare.Prepare;
+
 
 public class ProdutoDao extends Conexao {
 	public static List<Produto> getAllProducts() {

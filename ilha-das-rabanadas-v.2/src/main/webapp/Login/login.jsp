@@ -15,6 +15,8 @@
 	
 	<link rel="stylesheet" href="../public/css/login/animacao.css">
 	<link rel="stylesheet" href="../public/css/login/login.css">
+
+			<link rel="stylesheet" href="../public/css/login/login-mobile.css">
 	<link rel="stylesheet" href="../public/css/style.css">
 	<link rel="icon" href="../public/imgs/img/palmeira.png">
 
