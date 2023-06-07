@@ -46,7 +46,7 @@
 	<%
 	String produtomsg = (String) session.getAttribute("produtomsg");
 
-	// Remove o atributo da sessão
+	// Remove o atributo da sessÃ£o
 	if (produtomsg != null) {
 	%>
 	<div class="toast-container position-fixed top-0 end-0 p-3 "
@@ -95,8 +95,7 @@
 					novo produto</span></a>
 			<div>
 				<h4 class="text-start">Rabanadas Doces</h4>
-				<div
-					class="d-flex flex-row justify-content-center justify-content-md-between justify-content-lg-start  flex-wrap"
+			<div class="d-flex  justify-content-center justify-content-lg-start justify-content-md-between flex-wrap"
 					id="back-produto">
 					<c:forEach items="${list}" var="produto">
 						<c:if test="${produto.getCategoria()=='Doce'}">
