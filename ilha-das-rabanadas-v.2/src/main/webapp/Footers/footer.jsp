@@ -12,13 +12,13 @@
 
 		<div class="col">
 			<h5>
-				<b>Início</b>
+				<b>InÃ­cio</b>
 			</h5>
 			<ul class="nav flex-column">
 				<li class="nav-item mb-2"><a href="../Home/home.jsp"
 					class="nav-link p-0 text-muted links"><b>Home </b></a></li>
 				<li class="nav-item mb-2"><a href="../Produto/Cardapio.jsp"
-					class="nav-link p-0 text-muted links"><b> Cardápio</b></a></li>
+					class="nav-link p-0 text-muted links"><b> CardÃ¡pio</b></a></li>
 
 			</ul>
 		</div>
@@ -51,5 +51,7 @@
 
 			</ul>
 		</div>
+	<a target="_blank" href="https://github.com/JonathanGuimarae3s/ilha-das-rabanadas-v.2"
+	   class="nav-link p-0 text-muted  links">REPOSITÃ“RIO</a>
 	</footer>
 </div>
