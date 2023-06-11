@@ -1,5 +1,7 @@
 package com.ilhaDasRabanadas.bean;
 
+import org.mindrot.jbcrypt.BCrypt;
+
 public class Login {
 	private int idLogin;
 	private String email;
@@ -28,5 +30,10 @@ public class Login {
 	public void setIdLogin(int idLogin) {
 		this.idLogin = idLogin;
 	}
+	public  void encryptPassword(String password) {
+	    String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
+	    setPassword(hashedPassword); 
+	}
+ 
 
 }

@@ -8,7 +8,9 @@
     --hover: #247137;
 
   }
-
+#senha:invalid{
+	border:1px solid red;
+}
   form ,#informacoes{
     width: 50%;
     background-color: #d9b4484d;

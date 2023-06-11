@@ -57,7 +57,7 @@
 	<div
 		class="container d-flex justify-content-center align-items-center my-5 flex-column gap-3">
 		<h1 class="text-center">Cadastro</h1>
-	
+
 		<form action="../ClienteInsertServlet" method="POST" class="rounded">
 			<h5 class="text-danger">Obs: só fazemos entregas em Nova Iguaçu!</h5>
 			<div class="mb-4 row">
@@ -102,7 +102,7 @@
 				<div class="col-10">
 					<label for="rua" class="form-label">Rua</label> <input type="text"
 						required name="rua" id="logradouro" class="form-control"
-						placeholder="" readonly aria-describedby="helpId" >
+						placeholder="" readonly aria-describedby="helpId">
 				</div>
 
 				<div class="col">
@@ -116,13 +116,14 @@
 				<div class="col">
 					<label for="bairro" class="form-label">Bairro</label> <input
 						type="text" required name="bairro" id="bairro"
-						class="form-control" placeholder="" aria-describedby="helpId" readonly>
+						class="form-control" placeholder="" aria-describedby="helpId"
+						readonly>
 				</div>
 
 				<div class="col">
 					<label for="cidade" class="form-label">Cidade</label> <input
-					 name="cidade" id="localidade"
-						class="form-control " placeholder="" aria-describedby="helpId" readonly>
+						name="cidade" id="localidade" class="form-control " placeholder=""
+						aria-describedby="helpId" readonly>
 				</div>
 			</div>
 
@@ -138,7 +139,9 @@
 				<div class="col">
 					<label for="senha" class="form-label">Senha</label> <input
 						type="password" required name="senha" id="senha"
-						class="form-control" placeholder="" aria-describedby="helpId">
+						class="form-control"
+						pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[@#$])[a-zA-Z0-9@#$]{8,50}$"
+						aria-describedby="helpId">
 				</div>
 
 			</div>
@@ -168,7 +171,7 @@
 
     })
   </script>
-  <script src="../public/js/login/viaCep.js" type="text/javascript"></script>
+	<script src="../public/js/login/viaCep.js" type="text/javascript"></script>
 	<script src="https://cdn.lordicon.com/ritcuqlt.js"></script>
 
 	<!-- Bootstrap JavaScript Libraries -->

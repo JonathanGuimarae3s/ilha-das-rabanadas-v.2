@@ -46,34 +46,36 @@ public class LoginAuthentication extends HttpServlet {
 		HttpSession session = request.getSession();
 		// Obtém o nome de usuário e senha enviados pelo formulário
 		String email = request.getParameter("email");
-		String senha = request.getParameter("senha");
-
+		String password = request.getParameter("senha");
+		// ====
+		Login login = new Login();
+		login.setEmail(email);
+		login.setPassword(password);
+		// ====
 		LoginDao loginDao = new LoginDao();
 
 		try {
-			LoginDao.Authentication(email, senha);
-			Login login = LoginDao.Authentication(email, senha);
-		int id=login.getIdLogin();
-		if (id ==1 ) {
-			session.removeAttribute("id");
-			response.sendRedirect("./Adm/Dashboard.jsp");
 
-			session.setAttribute("boasVindas", "Bem-vindo de volta");
-			session.setAttribute("id", id);
+			int id = LoginDao.Authentication(login);
+			if (id == 1) {
+				session.removeAttribute("id");
+				response.sendRedirect("./Adm/Dashboard.jsp");
 
-		}
-		if(id>1) {
-			session.removeAttribute("id");
-			session.setAttribute("boasVindas", "Bem-vindo de volta");
-			response.sendRedirect("./Cliente/Dashboard.jsp");
-			session.setAttribute("id", id);
-		}
-		response.sendRedirect("./Login/login.jsp");
-		session.setAttribute("msg", "Email ou senha invalido!!");
+				session.setAttribute("boasVindas", "Bem-vindo de volta");
+				session.setAttribute("id", id);
+
+			}
+			if (id > 1) {
+				session.removeAttribute("id");
+				session.setAttribute("boasVindas", "Bem-vindo de volta");
+				response.sendRedirect("./Cliente/Dashboard.jsp");
+				session.setAttribute("id", id);
+			}
+			response.sendRedirect("./Login/login.jsp");
+			session.setAttribute("msg", "Email ou senha invalido!!");
 
 		} catch (Exception e) {
-		
-
+			System.out.println(e.getMessage());
 		}
 
 	}

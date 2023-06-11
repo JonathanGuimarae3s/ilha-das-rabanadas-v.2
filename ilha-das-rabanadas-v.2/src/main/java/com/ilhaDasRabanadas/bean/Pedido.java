@@ -7,6 +7,8 @@ import java.util.Date;
 
 public class Pedido {
 	protected int idPedido;
+	protected int idCliente;
+	protected String nomeProduto;
 	public String dataEntrega;
 	public String hora;
 	public String valorPedido;

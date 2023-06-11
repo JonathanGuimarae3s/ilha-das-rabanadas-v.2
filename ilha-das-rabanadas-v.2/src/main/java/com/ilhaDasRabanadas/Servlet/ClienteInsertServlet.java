@@ -1,6 +1,7 @@
 package com.ilhaDasRabanadas.Servlet;
 
 import java.io.IOException;
+import org.mindrot.jbcrypt.BCrypt;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -42,6 +43,8 @@ public class ClienteInsertServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
+
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
@@ -57,10 +60,13 @@ public class ClienteInsertServlet extends HttpServlet {
 
 		String email = request.getParameter("email");
 		String password = request.getParameter("senha");
-
+	
+		
+	
 		Login login = new Login();
 		login.setEmail(email);
-		login.setPassword(password);
+		login.encryptPassword(password);
+		System.out.println(login.getPassword());
 		try {
 			LoginDao.insert(login);
 
@@ -107,7 +113,7 @@ public class ClienteInsertServlet extends HttpServlet {
 		} catch (Exception e) {
 
 			System.out.println("errora");
-			System.out.println(e);
+			System.out.println(e.getMessage());
 
 		}
 

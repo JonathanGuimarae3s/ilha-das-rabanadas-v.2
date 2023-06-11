@@ -75,9 +75,7 @@ public class ProdutoDao extends Conexao {
 			stmt.setString(6, id);
 			stmt.execute();
 		} catch (Exception e) {
-			System.out.println(produto);
-			System.out.println("error na inserção");
-			System.out.println(e);
+			System.out.println(e.getMessage());
 		}
 	}
 

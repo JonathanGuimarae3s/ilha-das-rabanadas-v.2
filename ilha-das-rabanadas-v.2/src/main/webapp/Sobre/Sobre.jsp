@@ -44,16 +44,26 @@
 <body>
 
 
-
 	<%
 	Integer id = (Integer) session.getAttribute("id");
 
 	if (id == null || id < 1) {
 	%>
-
 	<jsp:include page="../Headers/headerPadrao.jsp"></jsp:include>
 
 
+
+	<%
+	} else if (id > 1) {
+	%>
+	<jsp:include page="../Headers/headerCliente.jsp"></jsp:include>
+	<%
+	} else {
+	%>
+	<jsp:include page="../Headers/headerAdm.jsp"></jsp:include>
+	<%
+	}
+	%>
 
 
 	<section class="container-fluid corPrimaria py-3">
@@ -180,11 +190,11 @@
 						class="imagem-responsivo">
 				</div>
 				<div class="col">
-					<p class=" text">Buscamos ser referência em comercialização de
-						rabanadas na Baixada Fluminense até o ano de 2028, trabalhos com
-						pensamento construtivo no intuito de nos torna-mos uma das cinco
-						empresas alimenticias lideres em distribuição de produtos ricos em
-						valores nutricionais.</p>
+					<p class=" text">Buscamos ser referência em comercialização
+						de rabanadas na Baixada Fluminense até o ano de 2028, trabalhos
+						com pensamento construtivo no intuito de nos torna-mos uma das
+						cinco empresas alimenticias lideres em distribuição de produtos
+						ricos em valores nutricionais.</p>
 				</div>
 			</div>
 		</div>

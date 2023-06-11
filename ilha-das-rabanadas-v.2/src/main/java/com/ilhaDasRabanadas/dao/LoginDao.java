@@ -1,5 +1,7 @@
 package com.ilhaDasRabanadas.dao;
 
+import org.mindrot.jbcrypt.BCrypt;
+
 import com.ilhaDasRabanadas.bean.Login;
 
 public class LoginDao extends Conexao {
@@ -43,34 +45,32 @@ public class LoginDao extends Conexao {
 
 	}
 
-	public static  Login Authentication(String email, String senha) {
-		
-		Login login= new Login();
-		
+	public static int Authentication(Login login) {
+
+		int id = 0;
+
 		try {
 			open();
-			String sql = "SELECT * FROM `login` WHERE login=? AND senha=?";
+			String sql = "SELECT * FROM `login` WHERE login=?";
 			stmt = con.prepareStatement(sql);
-			stmt.setString(1, email);
-			stmt.setString(2, senha);
-			
+			stmt.setString(1, login.getEmail());
+
 			rs = stmt.executeQuery();
-		
 
-				while (rs.next()) {
-					login.setIdLogin(rs.getInt("idLogin"));
+			while (rs.next()) {
+				String tempPassword = rs.getString("senha");
+				boolean teste = BCrypt.checkpw(login.getPassword(), tempPassword);
 
-					login.setEmail(rs.getString("login"));
-					login.setPassword(rs.getString("senha"));
-					
-
+				if (teste) {
+					id = rs.getInt("idLogin");
 				}
-		
+			}
+
 		} catch (Exception e) {
-			// TODO: ha	System.out.println("erro no servlet ><");ndle exception
-			
+			// TODO: ha System.out.println("erro no servlet ><");ndle exception
+			System.out.println(e.getMessage() + "sss");
 		}
-		return login;
+		return id;
 
 	}
 
