@@ -1,4 +1,5 @@
-
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
 <%@page import="org.apache.jasper.tagplugins.jstl.core.If"%>
 <%@page import="com.ilhaDasRabanadas.dao.*"%>
 <%@page import="com.ilhaDasRabanadas.bean.*"%>
@@ -6,9 +7,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@page import="javax.xml.crypto.Data"%>
 
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-<%@ page import="com.ilhaDasRabanadas.bean.Cliente"%>
+
 
 
 <%@ page import="java.util.Date,java.text.SimpleDateFormat"%>
@@ -35,89 +34,38 @@
 	integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
 	crossorigin="anonymous">
 
+
+<link rel="stylesheet" href="../public/css/style.css">
 <link rel="stylesheet" href="../public/css/carrinho/carrinho.css">
 <link rel="stylesheet" href="../public/css/carrinho/carrinho-tablet.css">
 <link rel="stylesheet" href="../public/css/carrinho/carrinho-mobile.css">
-<link rel="stylesheet" href="../public/css/style.css">
 
 
-<style>
-section {
-	background: rgba(217, 180, 72, 0.3);
-	height: max-content;
-}
-
-form {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	flex-direction: column;
-	width: 100%;
-}
-
-.card {
-	width: 65%;
-}
-
-.col {
-	max-height: 100%;
-	max-width: 30%;
-}
-
-.card-body {
-	width: max-content;
-}
-
-input[type=number] {
-	width: 40% !important;
-	display: inline;
-}
-
-#valorPedido {
-	background-color: transparent;
-}
-
-#valorPedido:focus-visible {
-	outline: 0px;
-}
-
-#buttons {
-	width: 65%;
-	gap: 30%;
-	align-items: center;
-	justify-content: center;
-	margin-top: 2em;
-}
-
-#buttons>input, button {
-	width: max-content;
-	height: 3em;
-}
-</style>
 </head>
 
 <body>
 
 
 	<%
-
 	Integer id = (Integer) session.getAttribute("id");
 	Cliente cliente = new Cliente();
 
-	SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yyyy");
-	String produtoId = request.getParameter("product");
+	String produtoId = request.getParameter("idProduto");
 	Date dataAtual = new Date();
-	if (id == null) {
-		request.setAttribute("msg", "Ã‰ necessÃ¡rio estar logado para efetuar a compra!");
+
+    // Criando o formato desejado
+    SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+
+    // Formatando a data
+    String dataFormatada = formato.format(dataAtual);
+  request.setAttribute("data", dataFormatada);
+
+	if (id == null || id == 1) {
+		request.setAttribute("msg", "� necessario estar logado como cliente para efetuar a compra!");
 		response.sendRedirect("../Login/login.jsp");
 
 	} else {
-		boolean teste = cliente.validarCliente(id);
-		if (!teste || id == null) {
 
-			response.sendRedirect("../Home/home.jsp");
-
-		}
 		if (produtoId == null && id != null) {
 
 			cliente = ClienteDao.getElementByIdLogin(id);
@@ -137,27 +85,26 @@ input[type=number] {
 		}
 
 	}
-
-
 	%>
 
 	<!-- Bootstrap JavaScript Libraries -->
 
+	<jsp:include page="../Headers/headerCliente.jsp"></jsp:include>
 
 
 	<main class="my-5">
 
-
 		<h1 class="text-center">Seu carrinho</h1>
 
 
+		<c:if test="${produto.getIdProduto()== 0}">
+
+			<div class="text-center">
+				<img src="../public/imgs/pedidos/naoHaPedidos.webp" alt=""></img>
+				<h4>Seu carrinho est� vazio!</h4>
+			</div>
+		</c:if>
 		<c:if test="${produto.getIdProduto()!= 0}">
-
-		<div class="text-center">
-			<img src="../public/imgs/pedidos/naoHaPedidos.webp" alt=""></img>
-			<h4>Seu carrinho está vazio!</h4>
-		</div>
-
 
 			<section class="container  flex-column p-4">
 				<form action="../PedidoInsertServlet" method="POST">
@@ -208,9 +155,10 @@ input[type=number] {
 											required>
 									</div>
 									<div class="mb-3">
-										<label class=" mb-2 form-label" for="">Data de entrega</label>
-										<input type="date" min="${data}" name="dataEntrega"
-											id="dataEntrega" class="form-control" required>
+									<label class=" mb-2 form-label" for="">Data
+											de entrega</label> <input type="date" min='${data}'
+											name="dataEntrega" id="dataEntrega" class="form-control"
+											required>
 									</div>
 									<div class="mb-3">
 										<label class=" mb-2 form-label" for="hora da entrega">Hora
@@ -232,7 +180,7 @@ input[type=number] {
 												Dinheiro </label>
 										</div>
 									</div>
-									<div>
+									<div id="boxTroco">
 										<p>PrecisarÃ¡ de troco? Para quanto?</p>
 										<input type="text" value="" name="troco" class="form-control">
 									</div>
@@ -249,55 +197,35 @@ input[type=number] {
 				</form>
 
 			</section>
-		</c:if>
 
-		<c:if test="${produto.getIdProduto()== 0}">
-			<div class="text-center">
-				<img src="../public/imgs/pedidos/naoHaPedidos.webp" alt=""></img>
-				<h4>Seu carrinho estÃ¡ vazio!</h4>
-			</div>
 		</c:if>
 
 
 
-		</section>
+
 
 	</main>
 
 
 
 
-	<script>
-        const inputQuantidade = document.querySelector("#quantidadePedido");
-        const precoElemento = document.querySelector("#preco");
-        const inputValorTotal = document.querySelector("#valorPedido");
-        inputQuantidade.addEventListener("click", () => {
-
-            let quantidade = inputQuantidade.value;
-            let preco = precoElemento.textContent;
-            preco = preco.replace("R$", "");
-            preco = preco.replace(",", ".");
-
-            let valorTotalAtual = (Number(preco) * quantidade).toLocaleString("pt-br", {
-                style: "currency",
-                currency: "BRL",
-            });
-            inputValorTotal.value = valorTotalAtual
-
-        })
-    </script>
+	<script src="../public/js/minhasCompras.js">
+		
+	</script>
 
 	<script
 		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
 		integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
 		crossorigin="anonymous">
-    </script>
+		
+	</script>
 
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
 		integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz"
 		crossorigin="anonymous">
-    </script>
+		
+	</script>
 </body>
 
 </html>

@@ -18,3 +18,5 @@ cep.addEventListener("blur", () => {
     };
     fetch(`https://viacep.com.br/ws/${search}/json/`, options).then(response => response.json().then(data => showData(data)))
 })
+
+

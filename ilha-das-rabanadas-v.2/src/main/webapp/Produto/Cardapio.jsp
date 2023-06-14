@@ -37,7 +37,26 @@
 	List<Produto> list = ProdutoDao.getAllProducts();
 	request.setAttribute("list", list);
 	%>
+	<%
+	Integer id = (Integer) session.getAttribute("id");
+
+	if (id == null || id < 1) {
+	%>
 	<jsp:include page="../Headers/headerPadrao.jsp"></jsp:include>
+
+
+
+	<%
+	} else if (id > 1) {
+	%>
+	<jsp:include page="../Headers/headerCliente.jsp"></jsp:include>
+	<%
+	} else {
+	%>
+	<jsp:include page="../Headers/headerAdm.jsp"></jsp:include>
+	<%
+	}
+	%>
 	<main>
 		<h1 class="text-center">Cardápio</h1>
 		<div class="container">

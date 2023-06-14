@@ -8,13 +8,16 @@
 <%@ page import="com.ilhaDasRabanadas.bean.Cliente"%>
 <%
 Integer id = (Integer) session.getAttribute("id");
-
-Cliente cliente = new Cliente();
-boolean teste=cliente.validarCliente(id);
-if (!teste) {
-
+if (id == null) {
 	response.sendRedirect("../Home/home.jsp");
-	
+} else {
+	Cliente cliente = new Cliente();
+	boolean teste = cliente.validarCliente(id);
+	if (!teste) {
+
+		response.sendRedirect("../Home/home.jsp");
+	}
+
 }
 %>
 
@@ -88,7 +91,8 @@ if (!teste) {
 	<main>
 		<h1 class="text-center my-4">Área do Cliente ${msg}</h1>
 		<div class="container">
-			<div id="container-cards" class=" d-flex flex-wrap justify-content-evenly">
+			<div id="container-cards"
+				class=" d-flex flex-wrap justify-content-evenly">
 				<div class="card">
 					<div class="card-body ">
 						<div class="icon text-center">

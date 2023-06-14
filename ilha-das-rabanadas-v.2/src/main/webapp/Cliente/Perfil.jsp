@@ -27,21 +27,39 @@
 <link rel="stylesheet" href="../public/css/form/forms-tablet.css">
 <link rel="stylesheet" href="../public/css/form/forms-mobile.css">
 <link rel="icon" href="../public/imgs/img/palmeira.png">
+<style type="text/css">
+#backImage {
+	margin: 0px auto;
+	width: 20%;
+	height: 123px;
+}
 
+#backImage>img {
+	width: 100%;
+	
+}
+</style>
 </head>
 <body>
-<body>
+
 
 	<%
 	Integer id = (Integer) session.getAttribute("id");
-	Cliente cliente = new Cliente();
-	boolean teste = cliente.validarCliente(id);
-	if (!teste) {
-
+	if (id == null) {
 		response.sendRedirect("../Home/home.jsp");
+	} else {
+		Cliente cliente = new Cliente();
+		boolean teste = cliente.validarCliente(id);
+		if (!teste) {
 
+			response.sendRedirect("../Home/home.jsp");
+		}
+
+		cliente = ClienteDao.getElementByIdLogin(id);
+		request.setAttribute("cliente", cliente);
 	}
-
+	%>
+	<%
 	String atualizado = (String) session.getAttribute("atualizado");
 
 	// Remove o atributo da sessão
@@ -77,15 +95,20 @@
 	%>
 
 	<jsp:include page="../Headers/header-dashboard-cliente.jsp"></jsp:include>
-	<%
-	cliente = ClienteDao.getElementByIdLogin(id);
-	request.setAttribute("cliente", cliente);
-	%>
+
 	<div
 		class="container d-flex justify-content-center align-items-center my-5 flex-column gap-3">
 		<h1 class="text-center">Seu perfil</h1>
+
 		<div id="informacoes" class="rounded">
-			<input type="hidden" name="id" value="">
+			<div id="backImage">
+
+				<img alt="avatar" id="avatar" />
+
+
+
+			</div>
+
 			<div class="mb-4 row">
 
 				<div class="col">
@@ -144,6 +167,10 @@
 	</div>
 
 	</main>
+	<script src="../public/js/perfil.js">
+       
+
+    </script>
 	<script src="https://cdn.lordicon.com/ritcuqlt.js"></script>
 
 	<!-- Bootstrap JavaScript Libraries -->
