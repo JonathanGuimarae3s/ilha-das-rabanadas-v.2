@@ -100,7 +100,7 @@
 		<c:if test="${produto.getIdProduto()== 0}">
 
 			<div class="text-center">
-				<img src="../public/imgs/pedidos/naoHaPedidos.webp" alt=""></img>
+				<img src="../public/imgs/pedidos/naoHaPedidos.webp" alt="" width="100%"></img>
 				<h4>Seu carrinho está vazio!</h4>
 			</div>
 		</c:if>

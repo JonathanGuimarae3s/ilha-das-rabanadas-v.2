@@ -124,7 +124,7 @@
 					class=" d-flex flex-row  justify-content-center justify-content-lg-start justify-content-md-between  flex-wrap "
 					id="back-produto">
 					<c:forEach items="${list}" var="produto">
-						<c:if test="${produto.getCategoria()=='Vegana'}">
+						<c:if test="${produto.getCategoria()=='Vegano'}">
 							<div class="card">
 								<div class="card-img">
 									<img class="card-img-top " src="${produto.getImagem()}"

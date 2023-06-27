@@ -151,7 +151,22 @@ if (!cliente.validarCliente(id)) {
 	</div>
 
 	</main>
+	<script type="text/javascript">
+ var inputPhone = document.querySelector("#numeroCelular");
 
+    inputPhone.addEventListener("blur", () => {
+      if (inputPhone.value.length == 11) {
+        var dd = inputPhone.value[0] + inputPhone.value[1];
+       var numero1 = inputPhone.value[2] + inputPhone.value[3] + inputPhone.value[4] + inputPhone.value[5] + inputPhone.value[6] ;
+       var numero2 = inputPhone.value[7] + inputPhone.value[8] + inputPhone.value[9] + inputPhone.value[10];
+       var  numeroFormatado = "("+dd+")"+" "+numero1+"-"+numero2;
+       inputPhone.value =numeroFormatado;
+
+      }
+
+    })
+  </script>
+	<script src="../public/js/login/viaCep.js" type="text/javascript"></script>
 	<script src="https://cdn.lordicon.com/ritcuqlt.js"></script>
 
 	<!-- Bootstrap JavaScript Libraries -->
